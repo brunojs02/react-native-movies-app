@@ -5,12 +5,7 @@ import { Colors } from '~/theme';
 
 const propTypes = {
   bold: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(
-      PropTypes.node,
-    ),
-  ]).isRequired,
+  children: PropTypes.string.isRequired,
   color: PropTypes.string,
   large: PropTypes.bool,
   small: PropTypes.bool,
