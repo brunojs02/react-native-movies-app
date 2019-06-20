@@ -11,6 +11,8 @@ class Search extends PureComponent {
     return (
       <View style={container}>
         <TextInput
+          autoCorrect={false}
+          keyboardType="visible-password"
           placeholder="Search"
           placeholderTextColor={Colors.lightGrey}
           style={input}
