@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import { Home } from '~/screens';
 import { Colors } from '~/theme';
 import { Icon } from '~/components';
+import Home from './Home';
 
 const Main = createBottomTabNavigator({
   Home,
-  Grid: Home,
-  Search: Home,
-  Messages: Home,
-  Profile: Home,
+  // Grid: Home,
+  // Search: Home,
+  // Messages: Home,
+  // Profile: Home,
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -45,7 +45,7 @@ const Main = createBottomTabNavigator({
     },
   }),
   tabBarOptions: {
-    activeTintColor: Colors.brown,
+    activeTintColor: Colors.gold,
     inactiveTintColor: Colors.lightGrey,
     showLabel: false,
     tabStyle: {

@@ -1,4 +1,3 @@
-import PopularMovieItem from './popular-movies/PopularMovieItem';
-import Search from './search/Search';
+import PopularMovieList from './popular-movies/PopularMovieList';
 
-export { PopularMovieItem, Search };
+export { PopularMovieList };

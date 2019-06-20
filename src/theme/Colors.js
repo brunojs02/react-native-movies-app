@@ -1,7 +1,7 @@
 const Colors = {
   white: '#FFFFFF',
   black: '#050405',
-  brown: '#B8A067',
+  gold: '#F2B41E',
   lightGrey: '#9A9A9A',
   darkGrey: '#282828',
 };
