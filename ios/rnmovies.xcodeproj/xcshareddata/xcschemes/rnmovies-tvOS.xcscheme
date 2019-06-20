@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "omdb-tvOS.app"
-               BlueprintName = "omdb-tvOS"
-               ReferencedContainer = "container:omdb.xcodeproj">
+               BuildableName = "rnmovies-tvOS.app"
+               BlueprintName = "rnmovies-tvOS"
+               ReferencedContainer = "container:rnmovies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "omdb-tvOSTests.xctest"
-               BlueprintName = "omdb-tvOSTests"
-               ReferencedContainer = "container:omdb.xcodeproj">
+               BuildableName = "rnmovies-tvOSTests.xctest"
+               BlueprintName = "rnmovies-tvOSTests"
+               ReferencedContainer = "container:rnmovies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "omdb-tvOSTests.xctest"
-               BlueprintName = "omdb-tvOSTests"
-               ReferencedContainer = "container:omdb.xcodeproj">
+               BuildableName = "rnmovies-tvOSTests.xctest"
+               BlueprintName = "rnmovies-tvOSTests"
+               ReferencedContainer = "container:rnmovies.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "omdb-tvOS.app"
-            BlueprintName = "omdb-tvOS"
-            ReferencedContainer = "container:omdb.xcodeproj">
+            BuildableName = "rnmovies-tvOS.app"
+            BlueprintName = "rnmovies-tvOS"
+            ReferencedContainer = "container:rnmovies.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "omdb-tvOS.app"
-            BlueprintName = "omdb-tvOS"
-            ReferencedContainer = "container:omdb.xcodeproj">
+            BuildableName = "rnmovies-tvOS.app"
+            BlueprintName = "rnmovies-tvOS"
+            ReferencedContainer = "container:rnmovies.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "omdb-tvOS.app"
-            BlueprintName = "omdb-tvOS"
-            ReferencedContainer = "container:omdb.xcodeproj">
+            BuildableName = "rnmovies-tvOS.app"
+            BlueprintName = "rnmovies-tvOS"
+            ReferencedContainer = "container:rnmovies.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

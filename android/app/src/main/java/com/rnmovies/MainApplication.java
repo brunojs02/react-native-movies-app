@@ -1,4 +1,4 @@
-package com.omdb;
+package com.rnmovies;
 
 import android.app.Application;
 

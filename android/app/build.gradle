@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.omdb"
+        applicationId "com.rnmovies"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
