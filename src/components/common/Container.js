@@ -5,7 +5,7 @@ import { Colors } from '~/theme';
 function Container({ children }) {
   return (
     <View style={{ flex: 1, backgroundColor: Colors.black }}>
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, marginHorizontal: 16, marginTop: 16 }}>
         {children}
       </SafeAreaView>
     </View>

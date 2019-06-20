@@ -46,11 +46,12 @@ const Main = createBottomTabNavigator({
   }),
   tabBarOptions: {
     activeTintColor: Colors.brown,
-    inactiveTintColor: Colors.lightPink,
+    inactiveTintColor: Colors.lightGrey,
     showLabel: false,
     tabStyle: {
       backgroundColor: Colors.black,
     },
+    keyboardHidesTabBar: true,
   },
 });
 
