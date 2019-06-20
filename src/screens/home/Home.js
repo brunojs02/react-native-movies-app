@@ -1,18 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { ScrollView } from 'react-native';
 import { Container } from '~/components';
-import { PopularMovieList } from './components';
+import { PopularMovieList, PopularPersonList } from './components';
 
-class Home extends PureComponent {
-  render() {
-    return (
-      <Container>
-        <ScrollView>
-          <PopularMovieList />
-        </ScrollView>
-      </Container>
-    );
-  }
+function Home() {
+  return (
+    <Container>
+      <ScrollView>
+        <PopularMovieList />
+        <PopularPersonList />
+      </ScrollView>
+    </Container>
+  );
 }
 
 export default Home;

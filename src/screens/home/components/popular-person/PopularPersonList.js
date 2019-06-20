@@ -3,9 +3,9 @@ import { ActivityIndicator } from 'react-native';
 import { List } from '~/components';
 import { api } from '~/services';
 import { Colors } from '~/theme';
-import PopularMovieItem from './PopularMovieItem';
+import PopularPersonItem from './PopularPersonItem';
 
-class PopularMovieList extends PureComponent {
+class PopularPersonList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class PopularMovieList extends PureComponent {
   }
 
   componentDidMount() {
-    api.get('movie/popular')
+    api.get('person/popular')
       .then(({ data: { results } }) => this.setState({ loading: false, movies: results }))
       .catch(() => {
         this.setState({ loading: false });
@@ -37,13 +37,13 @@ class PopularMovieList extends PureComponent {
     return (
       <List
         data={movies}
-        title="Popular Movies"
-        subtitle="Most popular movies in the world"
+        title="Popular Persons"
+        subtitle="Most popular persons"
         onViewAllPress={() => {}}
-        renderItem={({ item }) => <PopularMovieItem movie={item} />}
+        renderItem={({ item }) => <PopularPersonItem person={item} />}
       />
     );
   }
 }
 
-export default PopularMovieList;
+export default PopularPersonList;

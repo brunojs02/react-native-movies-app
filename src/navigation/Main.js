@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
 import { Icon } from '~/components';
@@ -6,10 +7,10 @@ import Home from './Home';
 
 const Main = createBottomTabNavigator({
   Home,
-  // Grid: Home,
-  // Search: Home,
-  // Messages: Home,
-  // Profile: Home,
+  Grid: Home,
+  Search: Home,
+  Messages: Home,
+  Profile: Home,
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -50,6 +51,8 @@ const Main = createBottomTabNavigator({
     showLabel: false,
     tabStyle: {
       backgroundColor: Colors.black,
+      borderTopColor: Colors.gold,
+      borderTopWidth: StyleSheet.hairlineWidth,
     },
     keyboardHidesTabBar: true,
   },
