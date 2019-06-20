@@ -1,12 +1,15 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { PureComponent } from 'react';
+import { Text } from 'react-native';
+import { Container } from '~/components';
 
-function Home() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 16 }}>Home Screen</Text>
-    </View>
-  );
+class Home extends PureComponent {
+  render() {
+    return (
+      <Container>
+        <Text style={{ fontSize: 16 }}>Home Screen</Text>
+      </Container>
+    );
+  }
 }
 
 export default Home;

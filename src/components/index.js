@@ -1,5 +1,11 @@
 import {
+  Container,
+  Icon,
   StatusBar,
 } from './common';
 
-export { StatusBar };
+export {
+  Container,
+  Icon,
+  StatusBar,
+};
