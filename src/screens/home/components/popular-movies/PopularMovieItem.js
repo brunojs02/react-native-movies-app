@@ -25,6 +25,7 @@ function PopularMovieItem({ movie }) {
       <View style={{ paddingHorizontal: 5, alignItems: 'center', marginTop: 8 }}>
         <Text
           small
+          bold
           numberOfLines={1}
         >
           {title}

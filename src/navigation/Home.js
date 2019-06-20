@@ -7,7 +7,7 @@ import { Icon } from '~/components';
 const stack = createStackNavigator({
   home: {
     screen: Home,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       title: 'OMDB',
       headerRight: (
         <Icon

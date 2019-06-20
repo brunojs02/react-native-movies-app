@@ -22,7 +22,15 @@ module.exports = {
   "rules": {
     "react/jsx-filename-extension": "off",
     "import/no-named-default": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/prop-types": [
+      "error",
+      {
+        "ignore": [
+          "navigation"
+        ]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
