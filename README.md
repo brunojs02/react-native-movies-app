@@ -6,5 +6,7 @@
 git clone https://github.com/brunojs02/react-native-movies-app.git rnmovies
 cd rnmovies && (npm i || yarn)
 cp env.example.json env.json
-react-native (run-android || run-ios)
+cd android/app
+keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
+cd ../.. && react-native (run-android || run-ios)
 ```
