@@ -1,15 +1,17 @@
 import {
-  Container,
   Icon,
   List,
-  StatusBar,
   Text,
+  Loading,
+  Container,
+  StatusBar,
 } from './common';
 
 export {
-  Container,
   Icon,
   List,
-  StatusBar,
   Text,
+  Loading,
+  Container,
+  StatusBar,
 };

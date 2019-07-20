@@ -18,13 +18,13 @@ const defaultProps = {
   small: false,
 };
 
-function Text({
+const Text = ({
   bold, children, color, large, small, ...props
-}) {
+}) => {
   const style = [{ color, fontSize: 18 }];
 
   if (small) {
-    style.push({ fontSize: 14 });
+    style.push({ fontSize: 16 });
   } else if (large) {
     style.push({ fontSize: 26 });
   }
@@ -40,7 +40,7 @@ function Text({
       {children}
     </RNText>
   );
-}
+};
 
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;

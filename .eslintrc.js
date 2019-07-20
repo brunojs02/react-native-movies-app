@@ -23,6 +23,7 @@ module.exports = {
     "react/jsx-filename-extension": "off",
     "import/no-named-default": "off",
     "import/prefer-default-export": "off",
+    "no-use-before-define": "off",
     "react/prop-types": [
       "error",
       {

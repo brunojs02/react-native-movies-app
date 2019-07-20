@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { List } from '~/components';
 import { api } from '~/services';
-import { Colors } from '~/theme';
+import { List, Loading } from '~/components';
 import PopularPersonItem from './PopularPersonItem';
 
 class PopularPersonList extends PureComponent {
@@ -27,10 +25,7 @@ class PopularPersonList extends PureComponent {
 
     if (loading) {
       return (
-        <ActivityIndicator
-          color={Colors.gold}
-          size={30}
-        />
+        <Loading />
       );
     }
 

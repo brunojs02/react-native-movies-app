@@ -1,6 +1,7 @@
 import React from 'react';
+import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Home } from '~/screens';
+import { Home, Movie } from '~/screens';
 import { Colors } from '~/theme';
 import { Icon } from '~/components';
 
@@ -10,10 +11,21 @@ const stack = createStackNavigator({
     navigationOptions: () => ({
       title: 'OMDB',
       headerRight: (
-        <Icon
-          name="search"
-        />
+        <View style={{ paddingRight: 16 }}>
+          <Icon
+            name="search"
+          />
+        </View>
       ),
+    }),
+  },
+  movie: {
+    screen: Movie,
+    navigationOptions: () => ({
+      headerTransparent: true,
+      headerStyle: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
     }),
   },
 }, {
@@ -21,7 +33,11 @@ const stack = createStackNavigator({
   defaultNavigationOptions: () => ({
     headerStyle: {
       backgroundColor: Colors.black,
-      elevation: 0,
+      ...Platform.select({
+        android: {
+          elevation: 0,
+        },
+      }),
     },
     headerTintColor: Colors.white,
   }),

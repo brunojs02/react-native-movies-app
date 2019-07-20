@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import { Colors } from '~/theme';
@@ -19,9 +19,9 @@ const defaultProps = {
   data: [],
 };
 
-function List({
+const List = ({
   data, title, subtitle, renderItem, onViewAllPress,
-}) {
+}) => {
   const { container, textContainer, listContainer } = styles;
 
   return (
@@ -38,9 +38,12 @@ function List({
           <Text small>{subtitle}</Text>
         </View>
         <View>
-          <TouchableWithoutFeedback onPress={onViewAllPress}>
+          <TouchableOpacity
+            onPress={onViewAllPress}
+            style={{ paddingVertical: 5 }}
+          >
             <Text small>View all</Text>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </View>
       <FlatList

@@ -1,13 +1,15 @@
-import Container from './Container';
 import Icon from './Icon';
-import List from './list/List';
-import StatusBar from './StatusBar';
 import Text from './Text';
+import List from './list/List';
+import Loading from './Loading';
+import Container from './Container';
+import StatusBar from './StatusBar';
 
 export {
-  Container,
   Icon,
   List,
-  StatusBar,
   Text,
+  Loading,
+  Container,
+  StatusBar,
 };

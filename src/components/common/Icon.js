@@ -6,21 +6,21 @@ import { Colors } from '~/theme';
 const propTypes = {
   color: PropTypes.string,
   name: PropTypes.string.isRequired,
+  large: PropTypes.bool,
 };
 
 const defaultProps = {
   color: Colors.white,
+  large: false,
 };
 
-function Icon({ name, color }) {
-  return (
-    <Feather
-      name={name}
-      size={24}
-      color={color}
-    />
-  );
-}
+const Icon = ({ name, color, large }) => (
+  <Feather
+    name={name}
+    size={!large ? 24 : 40}
+    color={color}
+  />
+);
 
 Icon.propTypes = propTypes;
 Icon.defaultProps = defaultProps;

@@ -13,9 +13,9 @@ function PopularMovieItem({ person }) {
   const { profile_path: pic } = person;
 
   return (
-    <View style={{ width: 100 }}>
+    <View style={{ width: 80 }}>
       <Image
-        style={{ width: 100, height: 100, borderRadius: 50 }}
+        style={{ width: 80, height: 80, borderRadius: 50 }}
         source={{ uri: `${resourceBaseUrl}w185${pic}` }}
         resizeMode="cover"
       />

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { List } from '~/components';
+import { withNavigation } from 'react-navigation';
 import { api } from '~/services';
-import { Colors } from '~/theme';
+import { List, Loading } from '~/components';
 import PopularMovieItem from './PopularMovieItem';
 
 class PopularMovieList extends PureComponent {
@@ -27,10 +26,7 @@ class PopularMovieList extends PureComponent {
 
     if (loading) {
       return (
-        <ActivityIndicator
-          color={Colors.gold}
-          size={30}
-        />
+        <Loading />
       );
     }
 
@@ -46,4 +42,4 @@ class PopularMovieList extends PureComponent {
   }
 }
 
-export default PopularMovieList;
+export default withNavigation(PopularMovieList);

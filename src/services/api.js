@@ -12,7 +12,7 @@ api.interceptors.request.use((config) => {
   configuration.params = {
     ...params,
     api_key: apiKey,
-    language: 'pt-br',
+    language: 'en-US',
   };
 
   return configuration;

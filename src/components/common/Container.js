@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Colors } from '~/theme';
 
@@ -10,18 +10,22 @@ const propTypes = {
       PropTypes.node,
     ),
   ]).isRequired,
+  transparency: PropTypes.bool,
 };
 
-function Container({ children }) {
-  return (
-    <View style={{ flex: 1, backgroundColor: Colors.black }}>
-      <View style={{ marginHorizontal: 16 }}>
-        {children}
-      </View>
+const defaultProps = {
+  transparency: false,
+};
+
+const Container = ({ children, transparency }) => (
+  <ScrollView style={{ flex: 1, backgroundColor: !transparency ? Colors.black : 'rgba(0, 0, 0, 0.7)' }}>
+    <View style={{ marginHorizontal: 16, marginBottom: 20 }}>
+      {children}
     </View>
-  );
-}
+  </ScrollView>
+);
 
 Container.propTypes = propTypes;
+Container.defaultProps = defaultProps;
 
 export default Container;
