@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Colors } from '~/theme';
 
@@ -19,9 +19,11 @@ const defaultProps = {
 
 const Container = ({ children, transparency }) => (
   <ScrollView style={{ flex: 1, backgroundColor: !transparency ? Colors.black : 'rgba(0, 0, 0, 0.7)' }}>
-    <View style={{ marginHorizontal: 16, marginBottom: 20 }}>
-      {children}
-    </View>
+    <SafeAreaView>
+      <View style={{ marginHorizontal: 16, marginBottom: 20 }}>
+        {children}
+      </View>
+    </SafeAreaView>
   </ScrollView>
 );
 

@@ -3,7 +3,7 @@ import { withNavigation } from 'react-navigation';
 import { Image, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Text } from '~/components';
-import { resourceBaseUrl } from '~/../env.json';
+import { themoviedb } from '~/../env.json';
 
 const propTypes = {
   movie: PropTypes.shape({
@@ -27,7 +27,7 @@ function PopularMovieItem({ movie, navigation: { navigate } }) {
       <TouchableOpacity onPress={() => navigate('movie', { id })}>
         <Image
           style={{ width: 120, height: 170, borderRadius: 5 }}
-          source={{ uri: `${resourceBaseUrl}w342${pic}` }}
+          source={{ uri: `${themoviedb.resourceUrl}w342${pic}` }}
           resizeMode="stretch"
         />
         <View style={{ paddingHorizontal: 5, alignItems: 'center', marginTop: 8 }}>
@@ -38,7 +38,7 @@ function PopularMovieItem({ movie, navigation: { navigate } }) {
           >
             {title}
           </Text>
-          <Text small>{date}</Text>
+          <Text small>{date.split('-')[0]}</Text>
         </View>
       </TouchableOpacity>
     </View>

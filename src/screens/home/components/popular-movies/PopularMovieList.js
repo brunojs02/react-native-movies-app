@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { api } from '~/services';
 import { List, Loading } from '~/components';
@@ -31,13 +32,15 @@ class PopularMovieList extends PureComponent {
     }
 
     return (
-      <List
-        data={movies}
-        title="Popular Movies"
-        subtitle="Most popular movies in the world"
-        onViewAllPress={() => {}}
-        renderItem={({ item }) => <PopularMovieItem movie={item} />}
-      />
+      <View style={{ marginVertical: 20 }}>
+        <List
+          data={movies}
+          title="Popular Movies"
+          subtitle="Most popular movies in the world"
+          onViewAllPress={() => {}}
+          renderItem={({ item }) => <PopularMovieItem movie={item} />}
+        />
+      </View>
     );
   }
 }

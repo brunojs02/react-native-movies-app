@@ -26,7 +26,7 @@ const Text = ({
   if (small) {
     style.push({ fontSize: 16 });
   } else if (large) {
-    style.push({ fontSize: 26 });
+    style.push({ fontSize: 22 });
   }
   if (bold) {
     style.push({ fontWeight: 'bold' });

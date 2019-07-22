@@ -5,6 +5,10 @@ import { Colors } from '~/theme';
 import { Icon } from '~/components';
 import Home from './Home';
 
+const screensWithTabBarHided = [
+  'movie',
+];
+
 const Main = createBottomTabNavigator({
   Home,
   Grid: Home,
@@ -13,9 +17,9 @@ const Main = createBottomTabNavigator({
   Profile: Home,
 },
 {
-  defaultNavigationOptions: ({ navigation }) => ({
+  defaultNavigationOptions: ({ navigation: { state } }) => ({
     tabBarIcon: ({ tintColor }) => {
-      const { routeName } = navigation.state;
+      const { routeName } = state;
       let iconName;
 
       switch (routeName) {
@@ -44,6 +48,8 @@ const Main = createBottomTabNavigator({
         />
       );
     },
+    tabBarVisible: !state.routes.find(({ routeName }) => screensWithTabBarHided
+      .find(screen => screen === routeName)),
   }),
   tabBarOptions: {
     activeTintColor: Colors.gold,

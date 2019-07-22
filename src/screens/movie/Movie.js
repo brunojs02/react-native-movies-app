@@ -1,25 +1,29 @@
 import React, { PureComponent } from 'react';
 import {
   View,
+  Linking,
   StyleSheet,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Icon,
   Text,
   Loading,
   Container,
+  List,
+  Person,
 } from '~/components';
 import { api } from '~/services';
 import { Colors } from '~/theme';
-import { resourceBaseUrl } from '~/../env.json';
+import { themoviedb, youtube } from '~/../env.json';
 
 class Movie extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      movie: {},
+      movie: null,
     };
   }
 
@@ -27,7 +31,7 @@ class Movie extends PureComponent {
     const { navigation: { getParam } } = this.props;
     const id = getParam('id', null);
 
-    api.get(`/movie/${id}?append_to_response=videos`).then(({ data }) => {
+    api.get(`/movie/${id}?append_to_response=videos,credits`).then(({ data }) => {
       const movie = data;
       let { videos } = movie;
 
@@ -44,8 +48,9 @@ class Movie extends PureComponent {
     const {
       infoContainer,
       headerContainer,
-      loadingContainer,
       ratingContainer,
+      loadingContainer,
+      backgroundContainer,
     } = styles;
 
     if (loading) {
@@ -57,6 +62,7 @@ class Movie extends PureComponent {
     }
 
     const {
+      credits,
       title,
       videos,
       runtime,
@@ -66,31 +72,37 @@ class Movie extends PureComponent {
       release_date: date,
       vote_average: rating,
     } = movie;
+    const { cast, crew } = credits;
     const duration = `${Math.floor(runtime / 60)}h ${(runtime % 60)}min`;
 
     return (
       <>
         <ImageBackground
-          source={{ uri: `${resourceBaseUrl}original${pic}` }}
-          style={{ width: '100%', height: '100%' }}
+          source={{ uri: `${themoviedb.resourceUrl}original${pic}` }}
+          style={backgroundContainer}
         >
           <Container transparency>
             <View style={headerContainer}>
               <View style={{ flex: 1 }}>
                 <Text
+                  bold
                   large
                   color={Colors.white}
                 >
                   {title}
                 </Text>
-                <Text>{date}</Text>
+                <Text>{date.split('-')[0]}</Text>
               </View>
               {!!videos.length && (
-                <Icon
-                  large
-                  name="play-circle"
-                  color={Colors.gold}
-                />
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(`${youtube.url}${videos[0].key}`)}
+                >
+                  <Icon
+                    large
+                    name="play-circle"
+                    color={Colors.gold}
+                  />
+                </TouchableOpacity>
               )}
             </View>
             <View style={infoContainer}>
@@ -116,6 +128,31 @@ class Movie extends PureComponent {
                 {overview}
               </Text>
             </View>
+            <View style={{ marginTop: 20 }}>
+              <List
+                data={crew.filter(({ job }) => job === 'Director')}
+                title="Directors"
+                renderItem={({ item }) => (
+                  <Person
+                    name={item.name}
+                    profilePath={item.profile_path}
+                  />
+                )}
+              />
+            </View>
+            <View>
+              <List
+                data={cast}
+                title="Actors"
+                renderItem={({ item }) => (
+                  <Person
+                    name={item.name}
+                    character={item.character}
+                    profilePath={item.profile_path}
+                  />
+                )}
+              />
+            </View>
           </Container>
         </ImageBackground>
       </>
@@ -124,6 +161,11 @@ class Movie extends PureComponent {
 }
 
 const styles = StyleSheet.create({
+  backgroundContainer: {
+    backgroundColor: Colors.black,
+    width: '100%',
+    height: '100%',
+  },
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',

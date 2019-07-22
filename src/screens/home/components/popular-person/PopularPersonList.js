@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { api } from '~/services';
-import { List, Loading } from '~/components';
-import PopularPersonItem from './PopularPersonItem';
+import { List, Loading, Person } from '~/components';
 
 class PopularPersonList extends PureComponent {
   constructor(props) {
@@ -35,7 +34,12 @@ class PopularPersonList extends PureComponent {
         title="Popular Persons"
         subtitle="Most popular persons"
         onViewAllPress={() => {}}
-        renderItem={({ item }) => <PopularPersonItem person={item} />}
+        renderItem={({ item: { name, profile_path: profilePath } }) => (
+          <Person
+            name={name}
+            profilePath={profilePath}
+          />
+        )}
       />
     );
   }

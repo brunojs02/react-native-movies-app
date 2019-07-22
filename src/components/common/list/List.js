@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
+import { uniqBy } from 'lodash';
 import PropTypes from 'prop-types';
-import Text from '../Text';
 import { Colors } from '~/theme';
+import Text from '../Text';
 import { styles } from './styles';
 
 const propTypes = {
@@ -10,13 +11,15 @@ const propTypes = {
     PropTypes.shape({}),
   ),
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   renderItem: PropTypes.func.isRequired,
-  onViewAllPress: PropTypes.func.isRequired,
+  onViewAllPress: PropTypes.func,
 };
 
 const defaultProps = {
   data: [],
+  subtitle: null,
+  onViewAllPress: null,
 };
 
 const List = ({
@@ -29,25 +32,28 @@ const List = ({
       <View style={textContainer}>
         <View style={{ flex: 1 }}>
           <Text
-            bold
             color={Colors.white}
             large
           >
             {title}
           </Text>
-          <Text small>{subtitle}</Text>
+          {subtitle && (
+            <Text small>{subtitle}</Text>
+          )}
         </View>
-        <View>
-          <TouchableOpacity
-            onPress={onViewAllPress}
-            style={{ paddingVertical: 5 }}
-          >
-            <Text small>View all</Text>
-          </TouchableOpacity>
-        </View>
+        {onViewAllPress && (
+          <View>
+            <TouchableOpacity
+              onPress={onViewAllPress}
+              style={{ paddingVertical: 5 }}
+            >
+              <Text small>View all</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
       <FlatList
-        data={data}
+        data={uniqBy(data, 'id')}
         horizontal
         ItemSeparatorComponent={() => <View style={{ marginEnd: 20 }} />}
         keyExtractor={({ id }) => id.toString()}

@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Home, Movie } from '~/screens';
 import { Colors } from '~/theme';
 import { Icon } from '~/components';
+import { Home, Movie } from '~/screens';
 
 const stack = createStackNavigator({
   home: {
     screen: Home,
     navigationOptions: () => ({
-      title: 'OMDB',
+      title: 'TMDB',
       headerRight: (
         <View style={{ paddingRight: 16 }}>
           <Icon
@@ -40,6 +40,7 @@ const stack = createStackNavigator({
       }),
     },
     headerTintColor: Colors.white,
+    headerBackImage: <Icon name="arrow-left" />,
   }),
 });
 
