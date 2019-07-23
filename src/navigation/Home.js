@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
-import { Icon } from '~/components';
+import { Icon, HeaderTitle } from '~/components';
 import { Home, Movie } from '~/screens';
 
 const stack = createStackNavigator({
   home: {
     screen: Home,
     navigationOptions: () => ({
-      title: 'TMDB',
+      headerTitle: <HeaderTitle title="TMDB" />,
       headerRight: (
         <View style={{ paddingRight: 16 }}>
           <Icon

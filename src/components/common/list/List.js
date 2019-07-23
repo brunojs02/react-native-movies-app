@@ -63,7 +63,7 @@ const List = ({
       />
     </View>
   );
-}
+};
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;

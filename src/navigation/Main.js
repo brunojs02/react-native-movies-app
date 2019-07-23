@@ -13,8 +13,6 @@ const Main = createBottomTabNavigator({
   Home,
   Grid: Home,
   Search: Home,
-  Messages: Home,
-  Profile: Home,
 },
 {
   defaultNavigationOptions: ({ navigation: { state } }) => ({

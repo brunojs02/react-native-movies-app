@@ -6,6 +6,7 @@ import {
   Loading,
   Container,
   StatusBar,
+  HeaderTitle,
 } from './common';
 
 export {
@@ -16,4 +17,5 @@ export {
   Loading,
   Container,
   StatusBar,
+  HeaderTitle,
 };

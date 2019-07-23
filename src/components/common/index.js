@@ -5,6 +5,7 @@ import List from './list/List';
 import Loading from './Loading';
 import Container from './Container';
 import StatusBar from './StatusBar';
+import HeaderTitle from './HeaderTitle';
 
 export {
   Icon,
@@ -14,4 +15,5 @@ export {
   Loading,
   Container,
   StatusBar,
+  HeaderTitle,
 };
