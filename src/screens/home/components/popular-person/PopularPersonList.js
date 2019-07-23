@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withNavigation } from 'react-navigation';
 import { api } from '~/services';
 import { List, Loading, Person } from '~/components';
 
@@ -34,8 +35,9 @@ class PopularPersonList extends PureComponent {
         title="Popular Persons"
         subtitle="Most popular persons"
         onViewAllPress={() => {}}
-        renderItem={({ item: { name, profile_path: profilePath } }) => (
+        renderItem={({ item: { id, name, profile_path: profilePath } }) => (
           <Person
+            id={id}
             name={name}
             profilePath={profilePath}
           />
@@ -45,4 +47,4 @@ class PopularPersonList extends PureComponent {
   }
 }
 
-export default PopularPersonList;
+export default withNavigation(PopularPersonList);

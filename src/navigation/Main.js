@@ -5,9 +5,7 @@ import { Colors } from '~/theme';
 import { Icon } from '~/components';
 import Home from './Home';
 
-const screensWithTabBarHided = [
-  'movie',
-];
+const screensWithTabBarHided = [];
 
 const Main = createBottomTabNavigator({
   Home,

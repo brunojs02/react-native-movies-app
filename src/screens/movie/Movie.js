@@ -76,86 +76,95 @@ class Movie extends PureComponent {
     const duration = `${Math.floor(runtime / 60)}h ${(runtime % 60)}min`;
 
     return (
-      <>
-        <ImageBackground
-          source={{ uri: `${themoviedb.resourceUrl}original${pic}` }}
-          style={backgroundContainer}
-        >
-          <Container transparency>
-            <View style={headerContainer}>
-              <View style={{ flex: 1 }}>
-                <Text
-                  bold
-                  large
-                  color={Colors.white}
-                >
-                  {title}
-                </Text>
-                <Text>{date.split('-')[0]}</Text>
-              </View>
-              {!!videos.length && (
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(`${youtube.url}${videos[0].key}`)}
-                >
-                  <Icon
-                    large
-                    name="play-circle"
-                    color={Colors.gold}
-                  />
-                </TouchableOpacity>
-              )}
-            </View>
-            <View style={infoContainer}>
-              <View style={{ flex: 1 }}>
-                <Text color={Colors.white}>
-                  {genres.map(({ name }) => name).join(', ')}
-                </Text>
-                <Text color={Colors.white}>{duration.toString()}</Text>
-              </View>
-              <View style={ratingContainer}>
-                <View style={{ marginRight: 5 }}>
-                  <Icon
-                    name="star"
-                    color={Colors.gold}
-                  />
-                </View>
-                <Text color={Colors.white}>{rating.toString()}</Text>
-              </View>
-            </View>
-            <View>
-              <Text color={Colors.white}>Sinopsi</Text>
-              <Text>
-                {overview}
+      <ImageBackground
+        source={{ uri: `${themoviedb.resourceUrl}original${pic}` }}
+        style={backgroundContainer}
+      >
+        <Container transparency>
+          <View style={headerContainer}>
+            <View style={{ flex: 1 }}>
+              <Text
+                bold
+                large
+                color={Colors.white}
+              >
+                {title}
               </Text>
+              <Text>{date.split('-')[0]}</Text>
             </View>
-            <View style={{ marginTop: 20 }}>
-              <List
-                data={crew.filter(({ job }) => job === 'Director')}
-                title="Directors"
-                renderItem={({ item }) => (
+            {!!videos.length && (
+              <TouchableOpacity
+                onPress={() => Linking.openURL(`${youtube.url}${videos[0].key}`)}
+              >
+                <Icon
+                  large
+                  name="play-circle"
+                  color={Colors.gold}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+          <View style={infoContainer}>
+            <View style={{ flex: 1 }}>
+              <Text color={Colors.white}>
+                {genres.map(({ name }) => name).join(', ')}
+              </Text>
+              <Text color={Colors.white}>{duration.toString()}</Text>
+            </View>
+            <View style={ratingContainer}>
+              <View style={{ marginRight: 5 }}>
+                <Icon
+                  name="star"
+                  color={Colors.gold}
+                />
+              </View>
+              <Text color={Colors.white}>{rating.toString()}</Text>
+            </View>
+          </View>
+          <View>
+            <Text color={Colors.white}>Sinopsi</Text>
+            <Text>
+              {overview}
+            </Text>
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <List
+              data={crew.filter(({ job }) => job === 'Director')}
+              title="Directors"
+              renderItem={({ item: { id, name, profile_path: profilePath } }) => (
+                <Person
+                  id={id}
+                  name={name}
+                  profilePath={profilePath}
+                />
+              )}
+            />
+          </View>
+          <View>
+            <List
+              data={cast}
+              title="Actors"
+              renderItem={({ item }) => {
+                const {
+                  id,
+                  name,
+                  character,
+                  profile_path: profilePath,
+                } = item;
+
+                return (
                   <Person
-                    name={item.name}
-                    profilePath={item.profile_path}
+                    id={id}
+                    name={name}
+                    character={character}
+                    profilePath={profilePath}
                   />
-                )}
-              />
-            </View>
-            <View>
-              <List
-                data={cast}
-                title="Actors"
-                renderItem={({ item }) => (
-                  <Person
-                    name={item.name}
-                    character={item.character}
-                    profilePath={item.profile_path}
-                  />
-                )}
-              />
-            </View>
-          </Container>
-        </ImageBackground>
-      </>
+                );
+              }}
+            />
+          </View>
+        </Container>
+      </ImageBackground>
     );
   }
 }
@@ -170,13 +179,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 100,
+    marginTop: 70,
   },
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 60,
+    marginVertical: 30,
   },
   ratingContainer: {
     flexDirection: 'row',

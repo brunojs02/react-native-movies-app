@@ -3,7 +3,7 @@ import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
 import { Icon, HeaderTitle } from '~/components';
-import { Home, Movie } from '~/screens';
+import { Home, Movie, Person } from '~/screens';
 
 const stack = createStackNavigator({
   home: {
@@ -21,6 +21,15 @@ const stack = createStackNavigator({
   },
   movie: {
     screen: Movie,
+    navigationOptions: () => ({
+      headerTransparent: true,
+      headerStyle: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
+    }),
+  },
+  person: {
+    screen: Person,
     navigationOptions: () => ({
       headerTransparent: true,
       headerStyle: {
