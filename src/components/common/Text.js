@@ -5,37 +5,50 @@ import { Colors } from '~/theme';
 
 const propTypes = {
   bold: PropTypes.bool,
-  children: PropTypes.string.isRequired,
-  color: PropTypes.string,
   large: PropTypes.bool,
   small: PropTypes.bool,
+  color: PropTypes.string,
+  extraLarge: PropTypes.bool,
+  style: PropTypes.shape({}),
+  children: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   bold: false,
-  color: Colors.lightGrey,
+  style: null,
   large: false,
   small: false,
+  extraLarge: false,
+  color: Colors.lightGrey,
 };
 
 const Text = ({
-  bold, children, color, large, small, ...props
+  bold,
+  color,
+  large,
+  small,
+  style,
+  children,
+  extraLarge,
+  ...props
 }) => {
-  const style = [{ color, fontSize: 18 }];
+  const textStyle = [{ color, fontSize: 18 }];
 
   if (small) {
-    style.push({ fontSize: 16 });
+    textStyle.push({ fontSize: 16 });
   } else if (large) {
-    style.push({ fontSize: 22 });
+    textStyle.push({ fontSize: 22 });
+  } else if (extraLarge) {
+    textStyle.push({ fontSize: 30 });
   }
   if (bold) {
-    style.push({ fontWeight: 'bold' });
+    textStyle.push({ fontWeight: 'bold' });
   }
 
   return (
     <RNText
-      style={style}
       {...props}
+      style={[textStyle, style]}
     >
       {children}
     </RNText>

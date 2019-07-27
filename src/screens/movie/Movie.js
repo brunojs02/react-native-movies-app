@@ -99,7 +99,7 @@ class Movie extends PureComponent {
                 <Icon
                   large
                   name="play-circle"
-                  color={Colors.gold}
+                  color={Colors.green}
                 />
               </TouchableOpacity>
             )}
@@ -115,7 +115,7 @@ class Movie extends PureComponent {
               <View style={{ marginRight: 5 }}>
                 <Icon
                   name="star"
-                  color={Colors.gold}
+                  color={Colors.green}
                 />
               </View>
               <Text color={Colors.white}>{rating.toString()}</Text>

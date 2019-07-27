@@ -48,12 +48,12 @@ const Main = createBottomTabNavigator({
       .find(screen => screen === routeName)),
   }),
   tabBarOptions: {
-    activeTintColor: Colors.gold,
+    activeTintColor: Colors.green,
     inactiveTintColor: Colors.lightGrey,
     showLabel: false,
     tabStyle: {
       backgroundColor: Colors.black,
-      borderTopColor: Colors.gold,
+      borderTopColor: Colors.green,
       borderTopWidth: StyleSheet.hairlineWidth,
     },
     keyboardHidesTabBar: true,

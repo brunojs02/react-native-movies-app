@@ -1,7 +1,9 @@
 import {
   Icon,
   List,
+  Logo,
   Text,
+  Button,
   Person,
   Loading,
   Container,
@@ -12,7 +14,9 @@ import {
 export {
   Icon,
   List,
+  Logo,
   Text,
+  Button,
   Person,
   Loading,
   Container,

@@ -5,7 +5,7 @@ import { Colors } from '~/theme';
 const Loading = () => (
   <View style={{ marginVertical: 5 }}>
     <ActivityIndicator
-      color={Colors.gold}
+      color={Colors.green}
       size={Platform.OS === 'ios' ? 1 : 30}
     />
   </View>
