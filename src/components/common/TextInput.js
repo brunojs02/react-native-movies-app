@@ -35,7 +35,6 @@ const TextInput = ({ label, ...props }) => {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    paddingHorizontal: 20,
     marginHorizontal: 8,
     marginVertical: 2,
   },

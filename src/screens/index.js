@@ -3,6 +3,7 @@ import Home from './home/Home';
 import Movie from './movie/Movie';
 import Person from './person/Person';
 import Welcome from './welcome/Welcome';
+import Register from './register/Register';
 
 export {
   Auth,
@@ -10,4 +11,5 @@ export {
   Movie,
   Person,
   Welcome,
+  Register,
 };

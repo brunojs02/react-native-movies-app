@@ -6,10 +6,11 @@ import {
   LoginView,
 } from '~/components';
 
-class Auth extends PureComponent {
+class Register extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      name: null,
       email: null,
       loading: false,
       password: null,
@@ -19,11 +20,22 @@ class Auth extends PureComponent {
   render() {
     const { navigation } = this.props;
     const { navigate } = navigation;
-    const { email, password, loading } = this.state;
+    const {
+      name,
+      email,
+      loading,
+      password,
+    } = this.state;
 
     return (
-      <LoginView title="Welcome back.">
+      <LoginView title="Create account.">
         <View style={styles.formContainer}>
+          <TextInput
+            label="Name"
+            value={name}
+            onChangeText={text => this.setState({ name: text })}
+            autoCapitalize="none"
+          />
           <TextInput
             label="Email"
             value={email}
@@ -42,8 +54,8 @@ class Auth extends PureComponent {
         </View>
         <View style={{ marginBottom: 2 }}>
           <Button
-            text="Sign In"
-            disabled={!(email && password)}
+            text="Sign Up"
+            disabled={!(name, email && password)}
             loading={loading}
             onPress={() => {
               Keyboard.dismiss();
@@ -55,9 +67,9 @@ class Auth extends PureComponent {
           />
           <View style={{ alignSelf: 'center' }}>
             <Button
-              text="Create an account"
+              text="I already have an account"
               transparent
-              onPress={() => navigate('register')}
+              onPress={() => navigate('auth')}
             />
           </View>
         </View>
@@ -73,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Auth;
+export default Register;

@@ -54,7 +54,7 @@ const Welcome = ({ navigation }) => {
               <Button
                 text="Sign Up"
                 transparent
-                onPress={() => {}}
+                onPress={() => navigate('register')}
               />
             </View>
           </View>
