@@ -8,6 +8,7 @@ import {
   Loading,
   Container,
   StatusBar,
+  TextInput,
   HeaderTitle,
 } from './common';
 
@@ -21,5 +22,6 @@ export {
   Loading,
   Container,
   StatusBar,
+  TextInput,
   HeaderTitle,
 };

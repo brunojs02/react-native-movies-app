@@ -7,6 +7,7 @@ import List from './list/List';
 import Loading from './Loading';
 import Container from './Container';
 import StatusBar from './StatusBar';
+import TextInput from './TextInput';
 import HeaderTitle from './HeaderTitle';
 
 export {
@@ -19,5 +20,6 @@ export {
   Loading,
   Container,
   StatusBar,
+  TextInput,
   HeaderTitle,
 };
