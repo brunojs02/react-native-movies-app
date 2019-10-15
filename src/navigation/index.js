@@ -4,9 +4,9 @@ import Main from './Main';
 
 const nav = createSwitchNavigator({
   auth: Auth,
-  home: Main,
+  main: Main,
 }, {
-  initialRouteName: 'auth',
+  initialRouteName: 'main',
 });
 
 export default createAppContainer(nav);

@@ -2,17 +2,17 @@ import React from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from './Text';
-import { Colors } from '~/theme';
+import { withTheme } from '~/theme';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const HeaderTitle = ({ title }) => (
+const HeaderTitle = ({ title, theme }) => (
   <View style={styles.headerContainer}>
     <Text
       large
-      color={Colors.white}
+      color={theme.primaryColor}
     >
       {title}
     </Text>
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
 
 HeaderTitle.propTypes = propTypes;
 
-export default HeaderTitle;
+export default withTheme(HeaderTitle);

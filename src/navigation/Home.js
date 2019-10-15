@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
-import { Icon, HeaderTitle } from '~/components';
 import { Home, Movie, Person } from '~/screens';
+import { Icon, HeaderTitle } from '~/components';
 
 const stack = createStackNavigator({
   home: {

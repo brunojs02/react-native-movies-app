@@ -28,7 +28,8 @@ module.exports = {
       "error",
       {
         "ignore": [
-          "navigation"
+          "navigation",
+          "theme"
         ]
       }
     ]

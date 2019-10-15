@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { Colors } from '~/theme';
+import { Colors, withTheme } from '~/theme';
 import { themoviedb } from '~/../env.json';
 import Text from './Text';
 
@@ -28,6 +28,7 @@ const defaultProps = {
 const Person = ({
   id,
   name,
+  theme,
   character,
   profilePath,
   navigation: { navigate },
@@ -45,7 +46,7 @@ const Person = ({
         <View style={{ alignItems: 'center' }}>
           <Text
             small
-            color={Colors.white}
+            color={theme.secondaryColor}
             numberOfLines={1}
           >
             {name}
@@ -76,4 +77,4 @@ const styles = StyleSheet.create({
 Person.propTypes = propTypes;
 Person.defaultProps = defaultProps;
 
-export default withNavigation(Person);
+export default withNavigation(withTheme(Person));

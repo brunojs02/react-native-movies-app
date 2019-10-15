@@ -4,6 +4,7 @@ import Movie from './movie/Movie';
 import Person from './person/Person';
 import Welcome from './welcome/Welcome';
 import Register from './register/Register';
+import Settings from './settings/Settings';
 
 export {
   Auth,
@@ -12,4 +13,5 @@ export {
   Person,
   Welcome,
   Register,
+  Settings,
 };

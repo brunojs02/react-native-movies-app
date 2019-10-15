@@ -4,13 +4,13 @@ import { createBottomTabNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
 import { Icon } from '~/components';
 import Home from './Home';
+import Settings from './Settings';
 
 const screensWithTabBarHided = [];
 
 const Main = createBottomTabNavigator({
   Home,
-  Grid: Home,
-  Search: Home,
+  Settings,
 },
 {
   defaultNavigationOptions: ({ navigation: { state } }) => ({
@@ -22,17 +22,8 @@ const Main = createBottomTabNavigator({
         case 'Home':
           iconName = 'home';
           break;
-        case 'Grid':
-          iconName = 'grid';
-          break;
-        case 'Search':
-          iconName = 'compass';
-          break;
-        case 'Messages':
-          iconName = 'message-circle';
-          break;
-        case 'Profile':
-          iconName = 'user';
+        case 'Settings':
+          iconName = 'menu';
           break;
         default:
       }

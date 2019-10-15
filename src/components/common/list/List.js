@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { uniqBy } from 'lodash';
 import PropTypes from 'prop-types';
-import { Colors } from '~/theme';
+import { withTheme } from '~/theme';
 import Text from '../Text';
 import { styles } from './styles';
 
@@ -23,7 +23,12 @@ const defaultProps = {
 };
 
 const List = ({
-  data, title, subtitle, renderItem, onViewAllPress,
+  data,
+  title,
+  theme,
+  subtitle,
+  renderItem,
+  onViewAllPress,
 }) => {
   const { container, textContainer, listContainer } = styles;
 
@@ -32,7 +37,7 @@ const List = ({
       <View style={textContainer}>
         <View style={{ flex: 1 }}>
           <Text
-            color={Colors.white}
+            color={theme.primaryColor}
             large
           >
             {title}
@@ -68,4 +73,4 @@ const List = ({
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;
 
-export default List;
+export default withTheme(List);

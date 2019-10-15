@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text as RNText } from 'react-native';
 import PropTypes from 'prop-types';
-import { Colors } from '~/theme';
+import { withTheme } from '~/theme';
 
 const propTypes = {
   bold: PropTypes.bool,
@@ -15,11 +15,11 @@ const propTypes = {
 
 const defaultProps = {
   bold: false,
+  color: null,
   style: null,
   large: false,
   small: false,
   extraLarge: false,
-  color: Colors.lightGrey,
 };
 
 const Text = ({
@@ -27,12 +27,13 @@ const Text = ({
   color,
   large,
   small,
+  theme,
   style,
   children,
   extraLarge,
   ...props
 }) => {
-  const textStyle = [{ color, fontSize: 18 }];
+  const textStyle = [{ color: color || theme.secondaryColor, fontSize: 18 }];
 
   if (small) {
     textStyle.push({ fontSize: 16 });
@@ -58,4 +59,4 @@ const Text = ({
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;
 
-export default Text;
+export default withTheme(Text);
