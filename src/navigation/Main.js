@@ -51,4 +51,4 @@ const Main = createBottomTabNavigator({
   },
 });
 
-export default Main;
+export default Home;
