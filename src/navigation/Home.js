@@ -43,6 +43,9 @@ const stack = createStackNavigator({
     headerStyle: {
       backgroundColor: Colors.black,
       ...Platform.select({
+        ios: {
+          borderBottomColor: 'transparent',
+        },
         android: {
           elevation: 0,
         },
