@@ -1,12 +1,12 @@
 import React from 'react';
 import { StatusBar as RNStatusBar } from 'react-native';
-import { Colors } from '~/theme';
+import { withTheme } from '~/theme';
 
-const StatusBar = () => (
+const StatusBar = ({ theme }) => (
   <RNStatusBar
-    barStyle="light-content"
-    backgroundColor={Colors.black}
+    backgroundColor={theme.background}
+    barStyle={theme.key === 'dark' ? 'light-content' : 'dark-content'}
   />
 );
 
-export default StatusBar;
+export default withTheme(StatusBar);

@@ -4,7 +4,7 @@ import {
 } from '~/actions/ui-actions/types';
 
 const INITIAL_STATE = {
-  theme: theme['dark'],
+  theme: theme.light,
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {

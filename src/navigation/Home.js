@@ -14,6 +14,7 @@ const stack = createStackNavigator({
         <View style={{ paddingRight: 16 }}>
           <Icon
             name="search"
+            color={Colors.black}
           />
         </View>
       ),
@@ -41,18 +42,17 @@ const stack = createStackNavigator({
   initialRouteName: 'home',
   defaultNavigationOptions: () => ({
     headerStyle: {
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       ...Platform.select({
         ios: {
           borderBottomColor: 'transparent',
         },
         android: {
-          elevation: 0,
         },
       }),
     },
-    headerTintColor: Colors.white,
-    headerBackImage: <Icon name="arrow-left" />,
+    headerTintColor: Colors.black,
+    headerBackImage: <Icon name="arrow-left" color={Colors.white} />,
   }),
 });
 

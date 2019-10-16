@@ -61,7 +61,7 @@ const List = ({
         data={uniqBy(data, 'id')}
         horizontal
         ItemSeparatorComponent={() => <View style={{ marginEnd: 20 }} />}
-        keyExtractor={({ id }) => id.toString()}
+        keyExtractor={({ id }) => String(id)}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         style={listContainer}
