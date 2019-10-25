@@ -1,20 +1,21 @@
 ## Screenshots
 
 #### Welcome Screen
-![Welcome Screen](screenshots/welcome_screen.png)
+<img src="screenshots/welcome_screen.webp" height="250" />
 
 #### Login Screen
-![Login Screen](screenshots/login_screen.png)
+<img src="screenshots/login_screen.webp" height="250" />
 
 #### Register Screen
-![Register Screen](screenshots/register_screen.png)
+<img src="screenshots/register_screen.webp" height="250" />
 
 #### Home Screen
-![Home Screen](screenshots/home_screen.png)
+<img src="screenshots/home_screen.webp" height="250" />
 
 ## Before Run
 - Make sure you have themoviedb api_key.
 - put the api_key in env.json file
+
 ## Run Instructions
 ```bash
 git clone https://github.com/brunojs02/react-native-movies-app.git rnmovies
