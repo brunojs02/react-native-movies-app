@@ -13,6 +13,7 @@ const Main = createBottomTabNavigator({
   Settings,
 },
 {
+  initialRouteName: 'Home',
   defaultNavigationOptions: ({ navigation: { state } }) => ({
     tabBarIcon: ({ tintColor }) => {
       const { routeName } = state;
@@ -23,7 +24,7 @@ const Main = createBottomTabNavigator({
           iconName = 'home';
           break;
         case 'Settings':
-          iconName = 'menu';
+          iconName = 'settings';
           break;
         default:
       }

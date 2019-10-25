@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
-import { Icon, HeaderTitle } from '~/components';
+import { HeaderTitle } from '~/components';
 import { Settings } from '~/screens';
 
 const stack = createStackNavigator({
@@ -16,15 +16,17 @@ const stack = createStackNavigator({
   initialRouteName: 'settings',
   defaultNavigationOptions: () => ({
     headerStyle: {
-      backgroundColor: Colors.lightGrey,
+      backgroundColor: Colors.black,
       ...Platform.select({
+        ios: {
+          borderBottomColor: 'transparent',
+        },
         android: {
           elevation: 0,
         },
       }),
     },
     headerTintColor: Colors.white,
-    headerBackImage: <Icon name="arrow-left" />,
   }),
 });
 

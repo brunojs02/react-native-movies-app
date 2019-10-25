@@ -30,10 +30,10 @@ const List = ({
   renderItem,
   onViewAllPress,
 }) => {
-  const { container, textContainer, listContainer } = styles;
+  const { textContainer, containerContentStyle } = styles;
 
   return (
-    <View style={container}>
+    <View style={{ marginBottom: 20 }}>
       <View style={textContainer}>
         <View style={{ flex: 1 }}>
           <Text
@@ -60,11 +60,12 @@ const List = ({
       <FlatList
         data={uniqBy(data, 'id')}
         horizontal
-        ItemSeparatorComponent={() => <View style={{ marginEnd: 20 }} />}
-        keyExtractor={({ id }) => String(id)}
         renderItem={renderItem}
+        style={{ marginTop: 10 }}
+        contentContainerStyle={containerContentStyle}
+        keyExtractor={({ id }) => String(id)}
         showsHorizontalScrollIndicator={false}
-        style={listContainer}
+        ItemSeparatorComponent={() => <View style={{ marginEnd: 20 }} />}
       />
     </View>
   );

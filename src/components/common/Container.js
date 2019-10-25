@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Colors, withTheme } from '~/theme';
+import { withTheme } from '~/theme';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -20,9 +20,7 @@ const defaultProps = {
 const Container = ({ children, transparency, theme }) => (
   <ScrollView style={{ flex: 1, backgroundColor: !transparency ? theme.background : 'rgba(0, 0, 0, 0.7)' }}>
     <SafeAreaView>
-      <View style={{ marginHorizontal: 16, marginBottom: 20 }}>
-        {children}
-      </View>
+      {children}
     </SafeAreaView>
   </ScrollView>
 );

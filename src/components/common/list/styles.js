@@ -1,15 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 0,
-  },
   textContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 16,
   },
-  listContainer: {
-    marginTop: 10,
+  containerContentStyle: {
+    paddingLeft: 16,
+    paddingRight: 6,
   },
 });
 

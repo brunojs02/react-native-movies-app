@@ -1,48 +1,29 @@
-import React, { PureComponent } from 'react';
-import { View } from 'react-native';
-import { withNavigation } from 'react-navigation';
-import { api } from '~/services';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withData } from '~/hocs';
 import { List, Loading } from '~/components';
 import PopularMovieItem from './PopularMovieItem';
 
-class PopularMovieList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      movies: [],
-    };
-  }
+const propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({}),
+  ).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
-  componentDidMount() {
-    api.get('movie/popular')
-      .then(({ data: { results } }) => this.setState({ loading: false, movies: results }))
-      .catch(() => {
-        this.setState({ loading: false });
-      });
-  }
+const PopularMovieList = ({ data, isLoading }) => (isLoading
+  ? <Loading />
+  : (
+    <List
+      data={data}
+      title="Popular Movies"
+      subtitle="Most popular movies in the world"
+      onViewAllPress={() => {}}
+      renderItem={({ item }) => <PopularMovieItem movie={item} />}
+    />
+  )
+);
 
-  render() {
-    const { loading, movies } = this.state;
+PopularMovieList.propTypes = propTypes;
 
-    if (loading) {
-      return (
-        <Loading />
-      );
-    }
-
-    return (
-      <View style={{ marginVertical: 20 }}>
-        <List
-          data={movies}
-          title="Popular Movies"
-          subtitle="Most popular movies in the world"
-          onViewAllPress={() => {}}
-          renderItem={({ item }) => <PopularMovieItem movie={item} />}
-        />
-      </View>
-    );
-  }
-}
-
-export default withNavigation(PopularMovieList);
+export default withData(PopularMovieList, 'movie/popular');

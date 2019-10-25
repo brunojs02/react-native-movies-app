@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { Colors, withTheme } from '~/theme';
+import { withTheme } from '~/theme';
 import { themoviedb } from '~/../env.json';
 import Text from './Text';
 
