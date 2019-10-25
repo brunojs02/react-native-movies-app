@@ -1,3 +1,17 @@
+## Screenshots
+
+#### Welcome Screen
+![Welcome Screen](screenshots/welcome_screen.png)
+
+#### Login Screen
+![Login Screen](screenshots/login_screen.png)
+
+#### Register Screen
+![Register Screen](screenshots/register_screen.png)
+
+#### Home Screen
+![Home Screen](screenshots/home_screen.png)
+
 ## Before Run
 - Make sure you have themoviedb api_key.
 - put the api_key in env.json file

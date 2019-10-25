@@ -6,7 +6,7 @@ const nav = createSwitchNavigator({
   auth: Auth,
   main: Main,
 }, {
-  initialRouteName: 'main',
+  initialRouteName: 'auth',
 });
 
 export default createAppContainer(nav);

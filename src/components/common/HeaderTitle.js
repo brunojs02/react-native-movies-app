@@ -11,6 +11,7 @@ const propTypes = {
 const HeaderTitle = ({ title, theme }) => (
   <View style={styles.headerContainer}>
     <Text
+      bold
       large
       color={theme.primaryColor}
     >
