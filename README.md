@@ -1,16 +1,16 @@
 ## Screenshots
 
 #### Welcome Screen
-<img src="screenshots/welcome_screen.webp" height="250" />
+<img src="screenshots/welcome_screen.webp" height="600" />
 
 #### Login Screen
-<img src="screenshots/login_screen.webp" height="250" />
+<img src="screenshots/login_screen.webp" height="600" />
 
 #### Register Screen
-<img src="screenshots/register_screen.webp" height="250" />
+<img src="screenshots/register_screen.webp" height="600" />
 
 #### Home Screen
-<img src="screenshots/home_screen.webp" height="250" />
+<img src="screenshots/home_screen.webp" height="600" />
 
 ## Before Run
 - Make sure you have themoviedb api_key.
