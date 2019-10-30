@@ -1,16 +1,23 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { Container } from '~/components';
-import { PopularTVList, PopularMovieList, PopularPersonList } from './components';
+import {
+  Search,
+  PopularTVList,
+  PopularMovieList,
+  PopularPersonList,
+} from './components';
 
 const Home = () => (
-  <Container>
-    <ScrollView>
+  <>
+    <Search />
+    <Container>
+      <View style={{ paddingVertical: 10 }} />
       <PopularMovieList />
       <PopularPersonList />
       <PopularTVList />
-    </ScrollView>
-  </Container>
+    </Container>
+  </>
 );
 
 export default Home;

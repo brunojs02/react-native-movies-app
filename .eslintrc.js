@@ -24,6 +24,7 @@ module.exports = {
     "import/no-named-default": "off",
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
+    "import/no-named-as-default": "off",
     "react/prop-types": [
       "error",
       {
