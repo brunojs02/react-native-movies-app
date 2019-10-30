@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '~/services';
 
-const withData = (Component, path) => (props) => {
-  const [data, setData] = useState([]);
+export const useFetch = ({ path }) => {
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -10,20 +10,14 @@ const withData = (Component, path) => (props) => {
     api.get(path)
       .then(({ data: { results } }) => {
         setLoading(false);
-        setData(results);
+        setResult(results);
       })
       .catch(() => {
         setLoading(false);
       });
   }, []);
 
-  return (
-    <Component
-      {...props}
-      data={data}
-      isLoading={loading}
-    />
-  );
+  return { loading, result };
 };
 
-export default withData;
+export default useFetch;
