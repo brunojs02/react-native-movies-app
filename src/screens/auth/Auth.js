@@ -1,74 +1,58 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Keyboard, StyleSheet } from 'react-native';
-import auth from '@react-native-firebase/auth';
 import {
   Button,
   TextInput,
   LoginView,
 } from '~/components';
+import { login, changeEmail, changePassword } from '~/actions/auth-actions';
 
-class Auth extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: null,
-      loading: false,
-      password: null,
-    };
-  }
+const Auth = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const { navigate } = navigation;
+  const { email, password, loading } = useSelector(({ authReducer }) => authReducer);
 
-  render() {
-    const { navigation } = this.props;
-    const { navigate } = navigation;
-    const { email, password, loading } = this.state;
-
-    return (
-      <LoginView title="Welcome back.">
-        <View style={styles.formContainer}>
-          <TextInput
-            label="Email"
-            value={email}
-            onChangeText={text => this.setState({ email: text })}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
-          <TextInput
-            label="Password"
-            value={password}
-            onChangeText={text => this.setState({ password: text })}
-            autoCorrect={false}
-            autoCapitalize="none"
-            secureTextEntry
-          />
-        </View>
-        <View style={{ marginBottom: 2 }}>
+  return (
+    <LoginView title="Welcome back.">
+      <View style={styles.formContainer}>
+        <TextInput
+          label="Email"
+          value={email}
+          onChangeText={text => dispatch(changeEmail(text))}
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
+        <TextInput
+          label="Password"
+          value={password}
+          onChangeText={text => dispatch(changePassword(text))}
+          autoCorrect={false}
+          autoCapitalize="none"
+          secureTextEntry
+        />
+      </View>
+      <View style={{ marginBottom: 2 }}>
+        <Button
+          text="Sign In"
+          disabled={!(email && password)}
+          loading={loading}
+          onPress={() => {
+            Keyboard.dismiss();
+            dispatch(login(navigation));
+          }}
+        />
+        <View style={{ alignSelf: 'center' }}>
           <Button
-            text="Sign In"
-            disabled={!(email && password)}
-            loading={loading}
-            onPress={() => {
-              Keyboard.dismiss();
-              this.setState({ loading: true });
-              auth().signInWithEmailAndPassword(email, password).then((res) => {
-                this.setState({ loading: false });
-                navigate('home');
-              }).catch((e) => {
-                this.setState({ loading: false });
-              });
-            }}
+            text="Create an account"
+            transparent
+            onPress={() => navigate('register')}
           />
-          <View style={{ alignSelf: 'center' }}>
-            <Button
-              text="Create an account"
-              transparent
-              onPress={() => navigate('register')}
-            />
-          </View>
         </View>
-      </LoginView>
-    );
-  }
-}
+      </View>
+    </LoginView>
+  );
+};
 
 const styles = StyleSheet.create({
   formContainer: {
