@@ -3,13 +3,14 @@ import { useFetch } from '~/hooks';
 import { List, Loading, Person } from '~/components';
 
 const PopularPersonList = () => {
-  const { result, loading } = useFetch({ path: 'person/popular' });
+  const { response, loading } = useFetch({ path: 'person/popular' });
+  const { results: data } = response || {};
 
   return (loading
     ? <Loading />
     : (
       <List
-        data={result}
+        data={data}
         title="Popular Persons"
         subtitle="Most popular persons"
         onViewAllPress={() => {}}

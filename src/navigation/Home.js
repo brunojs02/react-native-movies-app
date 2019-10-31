@@ -1,8 +1,6 @@
-import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
-import { Icon } from '~/components';
 import { Home, Movie, Person } from '~/screens';
 
 export default createStackNavigator({
@@ -14,12 +12,22 @@ export default createStackNavigator({
   },
   movie: {
     screen: Movie,
-    navigationOptions: () => ({
-      headerTransparent: true,
-      headerStyle: {
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
-    }),
+    navigationOptions: ({ navigation }) => {
+      const { state } = navigation;
+      const { params = {} } = state;
+      const {
+        navOptions = {
+          headerStyle: {
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+          },
+        },
+      } = params;
+
+      return {
+        ...navOptions,
+        headerTransparent: true,
+      };
+    },
   },
   person: {
     screen: Person,
@@ -34,6 +42,13 @@ export default createStackNavigator({
   initialRouteName: 'home',
   defaultNavigationOptions: () => ({
     headerBackTitle: null,
+    headerLeftContainerStyle: {
+      ...Platform.select({
+        ios: {
+          marginLeft: 8,
+        },
+      }),
+    },
     headerStyle: {
       backgroundColor: Colors.black,
       ...Platform.select({
@@ -46,6 +61,5 @@ export default createStackNavigator({
       }),
     },
     headerTintColor: Colors.white,
-    headerBackImage: <Icon name="arrow-left" color={Colors.white} />,
   }),
 });

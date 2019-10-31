@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   TextInput,
   StyleSheet,
-  SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 import { Colors } from '~/theme';
+import { Icon } from '~/components';
 
 const Search = () => {
+  const filterRef = useRef();
   const [filter, setFilter] = useState('');
-  const { searchContainer, searchInputStyle } = styles;
+  const { searchContainer, searchInputStyle, searchContent } = styles;
 
   return (
     <View style={searchContainer}>
-      <SafeAreaView style={{ marginBottom: 4 }}>
+      <View style={searchContent}>
         <TextInput
           value={filter}
           autoCorrect={false}
@@ -23,8 +25,18 @@ const Search = () => {
           style={searchInputStyle}
           selectionColor={Colors.lightGrey}
           placeholderTextColor={Colors.lightGrey}
+          ref={(ref) => { filterRef.current = ref; }}
         />
-      </SafeAreaView>
+        <TouchableOpacity
+          onPress={() => filterRef.current.blur()}
+          style={{ marginRight: 10 }}
+        >
+          <Icon
+            name="search"
+            color={Colors.lightGrey}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -32,15 +44,21 @@ const Search = () => {
 const styles = StyleSheet.create({
   searchContainer: {
     zIndex: 2,
-    paddingTop: 70,
+    paddingVertical: 30,
     backgroundColor: Colors.black,
   },
-  searchInputStyle: {
-    color: Colors.lightGrey,
-    padding: 10,
+  searchContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderRadius: 5,
     marginHorizontal: 16,
     backgroundColor: Colors.darkGrey,
+  },
+  searchInputStyle: {
+    flex: 1,
+    color: Colors.lightGrey,
+    padding: 10,
+    fontSize: 16,
   },
 });
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Container } from '~/components';
 import {
   Search,
@@ -9,15 +8,12 @@ import {
 } from './components';
 
 const Home = () => (
-  <>
+  <Container>
     <Search />
-    <Container>
-      <View style={{ paddingVertical: 10 }} />
-      <PopularMovieList />
-      <PopularPersonList />
-      <PopularTVList />
-    </Container>
-  </>
+    <PopularMovieList />
+    <PopularPersonList />
+    <PopularTVList />
+  </Container>
 );
 
 export default Home;

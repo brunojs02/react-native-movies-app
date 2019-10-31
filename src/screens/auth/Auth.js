@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, Keyboard, StyleSheet } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import {
   Button,
   TextInput,
@@ -48,9 +49,12 @@ class Auth extends PureComponent {
             onPress={() => {
               Keyboard.dismiss();
               this.setState({ loading: true });
-              setTimeout(() => {
+              auth().signInWithEmailAndPassword(email, password).then((res) => {
+                this.setState({ loading: false });
                 navigate('home');
-              }, 2000);
+              }).catch((e) => {
+                this.setState({ loading: false });
+              });
             }}
           />
           <View style={{ alignSelf: 'center' }}>

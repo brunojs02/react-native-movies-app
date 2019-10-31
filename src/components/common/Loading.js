@@ -3,11 +3,11 @@ import { Platform, View, ActivityIndicator } from 'react-native';
 import { Colors } from '~/theme';
 
 const Loading = () => (
-  <View style={{ marginVertical: Platform === 'ios' ? 10 : 5 }}>
+  <View style={{ marginVertical: Platform.OS === 'ios' ? 10 : 5 }}>
     <ActivityIndicator
       color={Colors.green}
-      style={{ paddingVertical: Platform === 'ios' ? 5 : 0 }}
-      size={Platform.OS === 'ios' ? 1 : 30}
+      style={{ paddingVertical: Platform.OS === 'ios' ? 5 : 0 }}
+      size={Platform.OS === 'ios' ? 'large' : 30}
     />
   </View>
 );

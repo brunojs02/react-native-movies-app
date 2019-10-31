@@ -8,7 +8,8 @@ import {
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { withTheme } from '~/theme';
-import { themoviedb } from '~/../env.json';
+import { useRemoteConfig } from '~/hooks';
+import { THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 import Text from './Text';
 
 const defaultProfilePic = require('~/assets/person.png');
@@ -33,7 +34,8 @@ const Person = ({
   profilePath,
   navigation: { navigate },
 }) => {
-  const source = profilePath ? { uri: `${themoviedb.resourceUrl}w185${profilePath}` } : defaultProfilePic;
+  const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
+  const source = profilePath ? { uri: `${resourceUrl}w185${profilePath}` } : defaultProfilePic;
 
   return (
     <TouchableOpacity onPress={() => navigate('person', { id })}>

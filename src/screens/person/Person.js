@@ -1,60 +1,34 @@
-import React, { PureComponent } from 'react';
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
-import { api } from '~/services';
+import React from 'react';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Colors } from '~/theme';
-import { themoviedb } from '~/../env.json';
 import { Container, Loading } from '~/components';
+import { useFetch, useRemoteConfig } from '~/hooks';
+import { THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 
-class Person extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      person: null,
-    };
-  }
+const Person = ({ navigation: { getParam } }) => {
+  const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
+  const personId = getParam('id', null);
+  const { response, loading } = useFetch({ path: `/person/${personId}` });
+  const { profile_path: pic } = response || {};
 
-  componentDidMount() {
-    const { navigation: { getParam } } = this.props;
-    const personId = getParam('id', null);
-
-    api.get(`/person/${personId}`).then(({ data }) => {
-      this.setState({ person: data, loading: false });
-    }).catch(() => {
-      this.setState({ loading: false });
-    });
-  }
-
-  render() {
-    const { loading, person } = this.state;
-    const { backgroundContainer, loadingContainer } = styles;
-
-    if (loading) {
-      return (
-        <View style={loadingContainer}>
-          <Loading />
-        </View>
-      );
-    }
-
-    const { profile_path: pic } = person;
-
-    return (
+  return (loading
+    ? (
+      <View style={styles.loadingContainer}>
+        <Loading />
+      </View>
+    )
+    : (
       <ImageBackground
-        source={{ uri: `${themoviedb.resourceUrl}original${pic}` }}
-        style={backgroundContainer}
+        source={{ uri: `${resourceUrl}original${pic}` }}
+        style={styles.backgroundContainer}
       >
         <Container transparency>
           <View />
         </Container>
       </ImageBackground>
-    );
-  }
-}
+    )
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundContainer: {

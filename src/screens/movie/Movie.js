@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { useRef } from 'react';
 import {
   View,
   Linking,
+  Animated,
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
@@ -14,73 +15,74 @@ import {
   List,
   Person,
 } from '~/components';
-import { api } from '~/services';
 import { Colors } from '~/theme';
-import { themoviedb, youtube } from '~/../env.json';
+import { useFetch, useRemoteConfig } from '~/hooks';
+import { YOUTUBE_URL, THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 
-class Movie extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      movie: null,
-    };
-  }
+const Movie = ({ navigation: { getParam, setParams } }) => {
+  const movieId = getParam('id', null);
+  const { current: animatedHeader } = useRef(new Animated.Value(0));
+  const youtubeUrl = useRemoteConfig({ key: YOUTUBE_URL });
+  const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
+  const { response, loading } = useFetch({ path: `/movie/${movieId}?append_to_response=videos,credits` });
+  const {
+    infoContainer,
+    headerContainer,
+    ratingContainer,
+    loadingContainer,
+    backgroundContainer,
+  } = styles;
+  const {
+    credits,
+    title,
+    videos,
+    runtime,
+    overview,
+    genres = [],
+    poster_path: pic,
+    release_date: date,
+    vote_average: rating,
+  } = response || {};
+  const { cast, crew } = credits || {};
+  const duration = `${Math.floor(runtime / 60)}h ${(runtime % 60)}min`;
 
-  componentDidMount() {
-    const { navigation: { getParam } } = this.props;
-    const id = getParam('id', null);
-
-    api.get(`/movie/${id}?append_to_response=videos,credits`).then(({ data }) => {
-      const movie = data;
-      let { videos } = movie;
-
-      videos = videos.results;
-      movie.videos = videos;
-      this.setState({ movie, loading: false });
-    }).catch(() => {
-      this.setState({ loading: false });
-    });
-  }
-
-  render() {
-    const { loading, movie } = this.state;
-    const {
-      infoContainer,
-      headerContainer,
-      ratingContainer,
-      loadingContainer,
-      backgroundContainer,
-    } = styles;
-
-    if (loading) {
-      return (
-        <View style={loadingContainer}>
-          <Loading />
-        </View>
-      );
-    }
-
-    const {
-      credits,
-      title,
-      videos,
-      runtime,
-      overview,
-      genres = [],
-      poster_path: pic,
-      release_date: date,
-      vote_average: rating,
-    } = movie;
-    const { cast, crew } = credits;
-    const duration = `${Math.floor(runtime / 60)}h ${(runtime % 60)}min`;
-
-    return (
+  return (loading
+    ? (
+      <View style={loadingContainer}>
+        <Loading />
+      </View>
+    )
+    : (
       <ImageBackground
-        source={{ uri: `${themoviedb.resourceUrl}original${pic}` }}
+        source={{ uri: `${resourceUrl}original${pic}` }}
         style={backgroundContainer}
       >
-        <Container transparency>
+        <Container
+          transparency
+          onScroll={(y) => {
+            animatedHeader.setValue(y);
+            setParams({
+              navOptions: {
+                title,
+                headerStyle: {
+                  backgroundColor: animatedHeader.interpolate({
+                    inputRange: [0, 36, 44],
+                    outputRange: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 1)'],
+                    extrapolate: 'clamp',
+                  }),
+                },
+                headerTitleStyle: {
+                  color: animatedHeader.interpolate({
+                    inputRange: [42, 44],
+                    outputRange: ['rgba(255, 255, 2555, 0)', 'rgba(255, 255, 255, 1)'],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              },
+            });
+          }
+        }
+        >
           <View style={headerContainer}>
             <View style={{ flex: 1 }}>
               <Text
@@ -94,7 +96,7 @@ class Movie extends PureComponent {
             </View>
             {!!videos.length && (
               <TouchableOpacity
-                onPress={() => Linking.openURL(`${youtube.url}${videos[0].key}`)}
+                onPress={() => Linking.openURL(`${youtubeUrl}${videos[0].key}`)}
               >
                 <Icon
                   large
@@ -121,7 +123,7 @@ class Movie extends PureComponent {
               <Text color={Colors.white}>{rating.toString()}</Text>
             </View>
           </View>
-          <View>
+          <View style={{ marginHorizontal: 16 }}>
             <Text color={Colors.white}>Sinopsi</Text>
             <Text>
               {overview}
@@ -165,9 +167,9 @@ class Movie extends PureComponent {
           </View>
         </Container>
       </ImageBackground>
-    );
-  }
-}
+    )
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -180,15 +182,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 70,
+    marginHorizontal: 16,
   },
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 30,
+    marginHorizontal: 16,
   },
   ratingContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 10,
   },
   loadingContainer: {

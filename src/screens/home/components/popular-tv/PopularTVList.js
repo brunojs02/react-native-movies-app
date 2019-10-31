@@ -4,13 +4,14 @@ import { List, Loading } from '~/components';
 import PopularTVItem from './PopularTVItem';
 
 const PopularTVList = () => {
-  const { result, loading } = useFetch({ path: 'tv/popular' });
+  const { response, loading } = useFetch({ path: 'tv/popular' });
+  const { results: data } = response || {};
 
   return (loading
     ? <Loading />
     : (
       <List
-        data={result}
+        data={data}
         title="Popular TV Show"
         subtitle="Most popular tv show in the world"
         onViewAllPress={() => {}}

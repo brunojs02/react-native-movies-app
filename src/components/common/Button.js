@@ -43,11 +43,10 @@ const Button = ({
   let buttonContent;
 
   if (loading) {
-    const m = Platform === 'ios' ? 10 : 10;
     buttonContent = (
       <ActivityIndicator
         color={Colors.white}
-        style={{ marginVertical: m }}
+        style={{ marginVertical: Platform.OS === 'ios' ? 10 : 0 }}
         size={Platform.OS === 'ios' ? 1 : 24}
       />
     );

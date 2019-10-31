@@ -4,13 +4,14 @@ import { List, Loading } from '~/components';
 import PopularMovieItem from './PopularMovieItem';
 
 const PopularMovieList = () => {
-  const { result, loading } = useFetch({ path: 'movie/popular' });
+  const { response, loading } = useFetch({ path: 'movie/popular' });
+  const { results: data } = response || {};
 
   return (loading
     ? <Loading />
     : (
       <List
-        data={result}
+        data={data}
         title="Popular Movies"
         subtitle="Most popular movies in the world"
         onViewAllPress={() => {}}

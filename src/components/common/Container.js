@@ -10,19 +10,30 @@ const propTypes = {
       PropTypes.node,
     ),
   ]).isRequired,
+  onScroll: PropTypes.func,
   transparency: PropTypes.bool,
 };
 
 const defaultProps = {
   transparency: false,
+  onScroll: () => {},
 };
 
-const Container = ({ children, transparency, theme }) => (
-  <ScrollView style={{ flex: 1, backgroundColor: !transparency ? theme.background : 'rgba(0, 0, 0, 0.7)' }}>
-    <SafeAreaView>
+const Container = ({
+  theme,
+  onScroll,
+  children,
+  transparency,
+}) => (
+  <SafeAreaView style={{ flex: 1, backgroundColor: !transparency ? theme.background : 'rgba(0, 0, 0, 0.7)' }}>
+    <ScrollView
+      scrollEventThrottle={1}
+      onScroll={({ nativeEvent }) => onScroll(nativeEvent.contentOffset.y)}
+      style={{ flex: 1 }}
+    >
       {children}
-    </SafeAreaView>
-  </ScrollView>
+    </ScrollView>
+  </SafeAreaView>
 );
 
 Container.propTypes = propTypes;
