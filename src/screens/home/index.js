@@ -1,7 +1,7 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Container } from '~/components';
 import {
-  Search,
   PopularTVList,
   PopularMovieList,
   PopularPersonList,
@@ -9,7 +9,7 @@ import {
 
 const Home = () => (
   <Container>
-    <Search />
+    <View style={{ marginTop: 20 }} />
     <PopularMovieList />
     <PopularPersonList />
     <PopularTVList />

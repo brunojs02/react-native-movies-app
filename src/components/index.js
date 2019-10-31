@@ -10,6 +10,7 @@ import {
   LoginView,
   StatusBar,
   TextInput,
+  Toutchable,
   HeaderTitle,
 } from './common';
 
@@ -25,5 +26,6 @@ export {
   LoginView,
   StatusBar,
   TextInput,
+  Toutchable,
   HeaderTitle,
 };

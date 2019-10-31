@@ -1,11 +1,11 @@
+import Home from './home';
 import Auth from './auth/Auth';
-import Home from './home/Home';
 import Loading from './loading';
+import Profile from './profile';
 import Movie from './movie/Movie';
 import Person from './person/Person';
 import Welcome from './welcome/Welcome';
 import Register from './register/Register';
-import Settings from './settings/Settings';
 
 export {
   Auth,
@@ -14,6 +14,6 @@ export {
   Person,
   Loading,
   Welcome,
+  Profile,
   Register,
-  Settings,
 };

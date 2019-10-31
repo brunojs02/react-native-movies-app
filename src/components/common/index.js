@@ -9,6 +9,7 @@ import Container from './Container';
 import LoginView from './LoginView';
 import StatusBar from './StatusBar';
 import TextInput from './TextInput';
+import Toutchable from './toutchable';
 import HeaderTitle from './HeaderTitle';
 
 export {
@@ -23,5 +24,6 @@ export {
   LoginView,
   StatusBar,
   TextInput,
+  Toutchable,
   HeaderTitle,
 };

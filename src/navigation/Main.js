@@ -2,43 +2,57 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
-import { Icon } from '~/components';
+import { Icon, Container } from '~/components';
 import Home from './Home';
-import Settings from './Settings';
+import Profile from './Profile';
 
-const screensWithTabBarHided = [];
-
+const screensWithTabBarHided = ['movie', 'person'];
 const Main = createBottomTabNavigator({
   Home,
-  Settings,
+  A: Container,
+  B: Container,
+  C: Container,
+  Profile,
 },
 {
   initialRouteName: 'Home',
-  defaultNavigationOptions: ({ navigation: { state } }) => ({
-    tabBarIcon: ({ tintColor }) => {
-      const { routeName } = state;
-      let iconName;
+  defaultNavigationOptions: ({ navigation: { state } }) => {
+    const { routeName, routes = [] } = state;
 
-      switch (routeName) {
-        case 'Home':
-          iconName = 'home';
-          break;
-        case 'Settings':
-          iconName = 'settings';
-          break;
-        default:
-      }
+    return {
+      tabBarIcon: ({ tintColor }) => {
+        let iconName;
 
-      return (
-        <Icon
-          name={iconName}
-          color={tintColor}
-        />
-      );
-    },
-    tabBarVisible: !state.routes.find(({ routeName }) => screensWithTabBarHided
-      .find(screen => screen === routeName)),
-  }),
+        switch (routeName) {
+          case 'Home':
+            iconName = 'home';
+            break;
+          case 'A':
+            iconName = 'search';
+            break;
+          case 'B':
+            iconName = 'grid';
+            break;
+          case 'C':
+            iconName = 'message-square';
+            break;
+          case 'Profile':
+            iconName = 'user';
+            break;
+          default:
+        }
+
+        return (
+          <Icon
+            name={iconName}
+            color={tintColor}
+          />
+        );
+      },
+      tabBarVisible: !routes.find(({ routeName }) => screensWithTabBarHided
+        .find(screen => screen === routeName)),
+    };
+  },
   tabBarOptions: {
     activeTintColor: Colors.green,
     inactiveTintColor: Colors.lightGrey,
@@ -52,4 +66,4 @@ const Main = createBottomTabNavigator({
   },
 });
 
-export default Home;
+export default Main;

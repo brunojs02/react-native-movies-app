@@ -26,7 +26,7 @@ const defaultProps = {
   disabled: false,
   transparent: false,
   color: Colors.green,
-  tintColor: Colors.white,
+  tintColor: Colors.black,
 };
 
 const Button = ({

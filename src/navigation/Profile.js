@@ -3,13 +3,13 @@ import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Colors } from '~/theme';
 import { HeaderTitle } from '~/components';
-import { Settings } from '~/screens';
+import { Profile } from '~/screens';
 
 const stack = createStackNavigator({
   settings: {
-    screen: Settings,
+    screen: Profile,
     navigationOptions: () => ({
-      headerTitle: <HeaderTitle title="Settings" />,
+      headerTitle: <HeaderTitle title="Profile" />,
     }),
   },
 }, {
