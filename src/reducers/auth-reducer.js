@@ -1,4 +1,5 @@
 import {
+  AUTH_SET_USER,
   AUTH_USER_LOGIN,
   AUTH_USER_LOGOUT,
   AUTH_USER_CHANGE_EMAIL,
@@ -46,6 +47,11 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         password: payload,
+      };
+    case AUTH_SET_USER:
+      return {
+        ...state,
+        user: payload,
       };
     default:
       return state;

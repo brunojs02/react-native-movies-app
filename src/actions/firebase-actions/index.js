@@ -1,13 +1,20 @@
 import auth from '@react-native-firebase/auth';
 import remoteConfig from '@react-native-firebase/remote-config';
+import { setUser } from '~/actions/auth-actions';
 import { FIREBASE_SET_CONFIG } from './types';
+
+const getAthenticatedUser = () => auth().currentUser;
 
 export const initFirebase = onFinish => async (dispatch) => {
   await setRemoteConfigValues(dispatch);
-  onFinish(isAuthenticated());
-};
+  const user = getAthenticatedUser();
 
-const isAuthenticated = () => !!auth().currentUser;
+  if (user) {
+    dispatch(setUser(getAthenticatedUser()));
+  }
+
+  onFinish(!!user);
+};
 
 const setRemoteConfigValues = async (dispatch) => {
   await remoteConfig().fetchAndActivate();

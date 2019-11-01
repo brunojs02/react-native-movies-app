@@ -1,3 +1,4 @@
+export const AUTH_SET_USER = '[AUTH] SET_USER';
 export const AUTH_USER_LOGIN = '[AUTH] USER_LOGIN';
 export const AUTH_USER_LOGOUT = '[AUTH] USER_LOGOUT';
 export const AUTH_USER_CHANGE_EMAIL = '[AUTH] USER_CHANGE_EMAIL';

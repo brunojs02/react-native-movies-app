@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import {
+  AUTH_SET_USER,
   AUTH_USER_LOGIN,
   AUTH_USER_LOGOUT,
   AUTH_USER_CHANGE_EMAIL,
@@ -7,6 +8,8 @@ import {
   AUTH_USER_LOGIN_SUCCESS,
   AUTH_USER_CHANGE_PASSWORD,
 } from './types';
+
+export const setUser = user => ({ type: AUTH_SET_USER, payload: user });
 
 export const changeEmail = email => ({ type: AUTH_USER_CHANGE_EMAIL, payload: email });
 
