@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Colors } from '~/theme';
 import { Icon, Container } from '~/components';
 import Home from './Home';
@@ -61,6 +61,9 @@ const Main = createBottomTabNavigator({
       backgroundColor: Colors.black,
       borderTopColor: Colors.green,
       borderTopWidth: StyleSheet.hairlineWidth,
+    },
+    style: {
+      backgroundColor: Colors.black,
     },
     keyboardHidesTabBar: true,
   },

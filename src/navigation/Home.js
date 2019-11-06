@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { Colors } from '~/theme';
 import { Home, Movie, Person } from '~/screens';
 

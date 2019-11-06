@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { Colors } from '~/theme';
 import { HeaderTitle } from '~/components';
 import { Profile } from '~/screens';

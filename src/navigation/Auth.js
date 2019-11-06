@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { Auth, Welcome, Register } from '~/screens';
 
 const stack = createStackNavigator({
