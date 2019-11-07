@@ -1,11 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Keyboard, StyleSheet } from 'react-native';
-import {
-  Button,
-  TextInput,
-  LoginView,
-} from '~/components';
+import { Colors } from '~/theme';
+import { Button, TextInput, LoginView } from '~/components';
 import { login, changeEmail, changePassword } from '~/actions/auth-actions';
 
 const Auth = ({ navigation }) => {
@@ -44,8 +41,9 @@ const Auth = ({ navigation }) => {
         />
         <View style={{ alignSelf: 'center' }}>
           <Button
-            text="Create an account"
             transparent
+            tintColor={Colors.white}
+            text="Create an account"
             onPress={() => navigate('register')}
           />
         </View>

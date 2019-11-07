@@ -7,7 +7,8 @@ export default createStackNavigator({
   home: {
     screen: Home,
     navigationOptions: () => ({
-      header: null,
+      // header: null,
+      headerTitle: 'RNMOVIES',
     }),
   },
   movie: {

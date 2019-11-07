@@ -33,7 +33,7 @@ const Welcome = ({ navigation }) => {
         <View style={{ flex: 1 }}>
           <View style={welcomeContainer}>
             <View style={{ alignItems: 'center' }}>
-              <Text>Welcome to tmdb</Text>
+              <Text>Welcome to rnmovies</Text>
               <Text
                 extraLarge
                 color={Colors.white}
@@ -52,8 +52,9 @@ const Welcome = ({ navigation }) => {
             </View>
             <View style={{ alignSelf: 'center' }}>
               <Button
-                text="Sign Up"
                 transparent
+                text="Sign Up"
+                tintColor={Colors.white}
                 onPress={() => navigate('register')}
               />
             </View>

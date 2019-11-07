@@ -26,7 +26,7 @@ const LoginView = ({
   children,
   navigation,
 }) => {
-  const { container, titleContainer } = styles;
+  const { container, content, titleContainer } = styles;
   const { pop } = navigation;
 
   return (
@@ -47,7 +47,9 @@ const LoginView = ({
           {title}
         </Text>
       </View>
-      {children}
+      <View style={content}>
+        {children}
+      </View>
     </SafeAreaView>
   );
 };
@@ -60,8 +62,12 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginTop: 20,
-    marginLeft: 6,
+    marginLeft: 16,
     paddingVertical: 8,
+  },
+  content: {
+    flex: 1,
+    marginHorizontal: 8,
   },
 });
 

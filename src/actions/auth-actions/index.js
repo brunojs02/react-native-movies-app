@@ -9,7 +9,7 @@ import {
   AUTH_USER_CHANGE_PASSWORD,
 } from './types';
 
-export const setUser = user => ({ type: AUTH_SET_USER, payload: user });
+export const setUser = user => ({ type: AUTH_SET_USER, payload: getUserMinified(user) });
 
 export const changeEmail = email => ({ type: AUTH_USER_CHANGE_EMAIL, payload: email });
 
@@ -21,9 +21,7 @@ export const login = ({ navigate }) => (dispatch, getState) => {
 
   dispatch({ type: AUTH_USER_LOGIN });
   auth().signInWithEmailAndPassword(email, password).then(({ user }) => {
-    const { displayName, uid } = user;
-
-    dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: { uid, email, name: displayName } });
+    dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: getUserMinified(user) });
     navigate('home');
   }).catch(() => {
     dispatch({ type: AUTH_USER_LOGIN_FAILURE });
@@ -35,4 +33,10 @@ export const logout = ({ navigate }) => (dispatch) => {
     dispatch({ type: AUTH_USER_LOGOUT });
     navigate('auth');
   });
+};
+
+const getUserMinified = (user) => {
+  const { uid, email, displayName: name } = user;
+
+  return { uid, email, name };
 };

@@ -6,7 +6,7 @@ import { Icon, Container } from '~/components';
 import Home from './Home';
 import Profile from './Profile';
 
-const screensWithTabBarHided = ['movie', 'person'];
+const screensWithTabBarHided = [];
 const Main = createBottomTabNavigator({
   Home,
   A: Container,
