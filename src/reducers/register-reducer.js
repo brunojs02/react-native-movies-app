@@ -1,4 +1,5 @@
 import {
+  REGISTER_RESET_FIELDS,
   REGISTER_USER_CHANGE_NAME,
   REGISTER_USER_CHANGE_EMAIL,
   REGISTER_USER_CREATE_ACCOUNT,
@@ -21,24 +22,22 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         name: payload,
-        errorMessage: '',
       };
     case REGISTER_USER_CHANGE_EMAIL:
       return {
         ...state,
         email: payload,
-        errorMessage: '',
       };
     case REGISTER_USER_CHANGE_PASSWORD:
       return {
         ...state,
-        errorMessage: '',
         password: payload,
       };
     case REGISTER_USER_CREATE_ACCOUNT:
       return {
         ...state,
         loading: true,
+        errorMessage: '',
       };
     case REGISTER_USER_CREATE_ACCOUNT_SUCCESS:
       return {
@@ -50,6 +49,10 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         password: '',
         loading: false,
         errorMessage: payload,
+      };
+    case REGISTER_RESET_FIELDS:
+      return {
+        ...INITIAL_STATE,
       };
     default:
       return state;

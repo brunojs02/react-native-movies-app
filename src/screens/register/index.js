@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Keyboard, StyleSheet } from 'react-native';
 import { Colors } from '~/theme';
@@ -12,6 +12,7 @@ import {
   register,
   changeName,
   changeEmail,
+  resetFields,
   changePassword,
 } from '~/actions/register-actions';
 
@@ -24,6 +25,8 @@ const Register = ({ navigation }) => {
     password,
     errorMessage,
   } = useSelector(({ registerReducer }) => registerReducer);
+
+  useEffect(() => () => dispatch(resetFields()), []);
 
   return (
     <LoginView title="Create account.">

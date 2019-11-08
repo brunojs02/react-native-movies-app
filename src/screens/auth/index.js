@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Keyboard, StyleSheet } from 'react-native';
 import { Colors } from '~/theme';
-import { Button, TextInput, LoginView } from '~/components';
-import { login, changeEmail, changePassword } from '~/actions/auth-actions';
+import {
+  Text,
+  Button,
+  LoginView,
+  TextInput,
+} from '~/components';
+import {
+  login,
+  changeEmail,
+  resetFields,
+  changePassword,
+} from '~/actions/auth-actions';
 
 const Auth = ({ navigation }) => {
   const dispatch = useDispatch();
   const { navigate } = navigation;
-  const { email, password, loading } = useSelector(({ authReducer }) => authReducer);
+  const {
+    email,
+    loading,
+    password,
+    errorMessage,
+  } = useSelector(({ authReducer }) => authReducer);
+
+  useEffect(() => () => dispatch(resetFields()), []);
 
   return (
     <LoginView title="Welcome back.">
       <View style={styles.formContainer}>
+        {!!errorMessage && (
+          <View style={{ marginHorizontal: 8 }}>
+            <Text color={Colors.red}>{errorMessage}</Text>
+          </View>
+        )}
         <TextInput
           label="Email"
           value={email}

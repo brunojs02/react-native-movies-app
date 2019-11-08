@@ -6,7 +6,7 @@ const Logo = () => (
   <Image
     source={tmdbLogo}
     resizeMode="stretch"
-    style={{ width: 100, height: 100 }}
+    style={{ width: 140, height: 140 }}
   />
 );
 

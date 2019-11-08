@@ -2,6 +2,7 @@ import {
   AUTH_SET_USER,
   AUTH_USER_LOGIN,
   AUTH_USER_LOGOUT,
+  AUTH_RESET_FIELDS,
   AUTH_USER_CHANGE_EMAIL,
   AUTH_USER_LOGIN_FAILURE,
   AUTH_USER_LOGIN_SUCCESS,
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   user: null,
   password: '',
   loading: false,
+  errorMessage: '',
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -21,6 +23,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         loading: true,
+        errorMessage: '',
       };
     case AUTH_USER_LOGIN_SUCCESS:
       return {
@@ -33,6 +36,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         password: '',
         loading: false,
+        errorMessage: payload,
       };
     case AUTH_USER_LOGOUT:
       return {
@@ -48,9 +52,13 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         password: payload,
       };
+    case AUTH_RESET_FIELDS:
+      return {
+        ...INITIAL_STATE,
+      };
     case AUTH_SET_USER:
       return {
-        ...state,
+        ...INITIAL_STATE,
         user: payload,
       };
     default:

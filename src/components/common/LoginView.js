@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
-import Icon from './Icon';
-import Text from './Text';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { Colors } from '~/theme';
+import Text from './Text';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -21,23 +15,11 @@ const propTypes = {
   ]).isRequired,
 };
 
-const LoginView = ({
-  title,
-  children,
-  navigation,
-}) => {
+const LoginView = ({ title, children }) => {
   const { container, content, titleContainer } = styles;
-  const { pop } = navigation;
 
   return (
     <SafeAreaView style={container}>
-      <View>
-        <TouchableOpacity onPress={() => pop()}>
-          <Icon
-            name="arrow-left"
-          />
-        </TouchableOpacity>
-      </View>
       <View style={titleContainer}>
         <Text
           bold

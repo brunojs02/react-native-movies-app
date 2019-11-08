@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import { setUser } from '~/actions/auth-actions';
 
 import {
+  REGISTER_RESET_FIELDS,
   REGISTER_USER_CHANGE_NAME,
   REGISTER_USER_CHANGE_EMAIL,
   REGISTER_USER_CREATE_ACCOUNT,
@@ -9,6 +10,8 @@ import {
   REGISTER_USER_CREATE_ACCOUNT_FAILURE,
   REGISTER_USER_CREATE_ACCOUNT_SUCCESS,
 } from './types';
+
+export const resetFields = () => ({ type: REGISTER_RESET_FIELDS });
 
 export const changeName = name => ({ type: REGISTER_USER_CHANGE_NAME, payload: name });
 
@@ -27,6 +30,7 @@ export const register = ({ navigate }) => (dispatch, getState) => {
   auth().createUserWithEmailAndPassword(email, password)
     .then(async ({ user }) => {
       await user.updateProfile({ displayName: name });
+      await user.sendEmailVerification();
       dispatch(setUser(user));
       dispatch({ type: REGISTER_USER_CREATE_ACCOUNT_SUCCESS });
       navigate('home');
