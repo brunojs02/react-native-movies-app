@@ -1,32 +1,12 @@
-import React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Colors } from '~/theme';
-import { HeaderTitle } from '~/components';
 import { Profile } from '~/screens';
 
 const stack = createStackNavigator({
-  settings: {
-    screen: Profile,
-    navigationOptions: () => ({
-      headerTitle: <HeaderTitle title="Profile" />,
-    }),
-  },
+  profile: Profile,
 }, {
-  initialRouteName: 'settings',
+  initialRouteName: 'profile',
   defaultNavigationOptions: () => ({
-    headerStyle: {
-      backgroundColor: Colors.black,
-      ...Platform.select({
-        ios: {
-          borderBottomColor: 'transparent',
-        },
-        android: {
-          elevation: 0,
-        },
-      }),
-    },
-    headerTintColor: Colors.white,
+    header: null,
   }),
 });
 

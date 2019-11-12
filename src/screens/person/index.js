@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Colors } from '~/theme';
-import { Container, Loading } from '~/components';
+import { Container, Loading, HeaderBack } from '~/components';
 import { useFetch, useRemoteConfig } from '~/hooks';
 import { THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 
@@ -23,6 +23,7 @@ const Person = ({ navigation: { getParam } }) => {
         style={styles.backgroundContainer}
       >
         <Container transparency>
+          <HeaderBack />
           <View />
         </Container>
       </ImageBackground>

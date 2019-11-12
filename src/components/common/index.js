@@ -10,7 +10,7 @@ import LoginView from './LoginView';
 import StatusBar from './StatusBar';
 import TextInput from './TextInput';
 import Toutchable from './toutchable';
-import HeaderTitle from './HeaderTitle';
+import HeaderBack from './header-back';
 
 export {
   Icon,
@@ -24,6 +24,6 @@ export {
   LoginView,
   StatusBar,
   TextInput,
+  HeaderBack,
   Toutchable,
-  HeaderTitle,
 };

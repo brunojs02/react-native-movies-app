@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   View,
   Linking,
-  Animated,
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
@@ -10,18 +9,18 @@ import {
 import {
   Icon,
   Text,
-  Loading,
-  Container,
   List,
   Person,
+  Loading,
+  Container,
+  HeaderBack,
 } from '~/components';
 import { Colors } from '~/theme';
 import { useFetch, useRemoteConfig } from '~/hooks';
 import { YOUTUBE_URL, THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 
-const Movie = ({ navigation: { getParam, setParams } }) => {
+const Movie = ({ navigation: { getParam } }) => {
   const movieId = getParam('id', null);
-  const { current: animatedHeader } = useRef(new Animated.Value(0));
   const youtubeUrl = useRemoteConfig({ key: YOUTUBE_URL });
   const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
   const { response, loading } = useFetch({ path: `/movie/${movieId}?append_to_response=videos,credits` });
@@ -57,32 +56,8 @@ const Movie = ({ navigation: { getParam, setParams } }) => {
         source={{ uri: `${resourceUrl}original${pic}` }}
         style={backgroundContainer}
       >
-        <Container
-          transparency
-          onScroll={(y) => {
-            animatedHeader.setValue(y);
-            setParams({
-              navOptions: {
-                title,
-                headerStyle: {
-                  backgroundColor: animatedHeader.interpolate({
-                    inputRange: [0, 36, 44],
-                    outputRange: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 1)'],
-                    extrapolate: 'clamp',
-                  }),
-                },
-                headerTitleStyle: {
-                  color: animatedHeader.interpolate({
-                    inputRange: [42, 44],
-                    outputRange: ['rgba(255, 255, 2555, 0)', 'rgba(255, 255, 255, 1)'],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              },
-            });
-          }
-        }
-        >
+        <Container transparency>
+          <HeaderBack />
           <View style={headerContainer}>
             <View style={{ flex: 1 }}>
               <Text
@@ -181,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 70,
+    marginTop: 10,
     marginHorizontal: 16,
   },
   infoContainer: {
