@@ -54,7 +54,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       };
     case AUTH_RESET_FIELDS:
       return {
-        ...INITIAL_STATE,
+        ...state,
+        user: state.user,
       };
     case AUTH_SET_USER:
       return {

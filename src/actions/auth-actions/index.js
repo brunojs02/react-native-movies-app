@@ -24,7 +24,15 @@ export const login = ({ navigate }) => (dispatch, getState) => {
 
   dispatch({ type: AUTH_USER_LOGIN });
   auth().signInWithEmailAndPassword(email, password).then(({ user }) => {
-    dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: getUserMinified(user) });
+    const userMinified = getUserMinified(user);
+
+    if (!userMinified.activated) {
+      const error = { code: 'auth/account-not-activated' };
+
+      throw error;
+    }
+
+    dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: userMinified });
     navigate('home');
   }).catch(({ code }) => {
     let errorMessage = '';
@@ -37,10 +45,13 @@ export const login = ({ navigate }) => (dispatch, getState) => {
         errorMessage = 'Email and/or password are wrong.';
         break;
       case 'auth/invalid-email':
-        errorMessage = 'Email inválido';
+        errorMessage = 'Invalid Email.';
+        break;
+      case 'auth/account-not-activated':
+        errorMessage = 'Verify your email to activate your account.';
         break;
       default:
-        errorMessage = 'Ocorreu um erro, tente novamente.';
+        errorMessage = 'An error occurred, try again.';
     }
 
     dispatch({ type: AUTH_USER_LOGIN_FAILURE, payload: errorMessage });
@@ -55,7 +66,17 @@ export const logout = ({ navigate }) => (dispatch) => {
 };
 
 const getUserMinified = (user) => {
-  const { uid, email, displayName: name } = user;
+  const {
+    uid,
+    email,
+    displayName: name,
+    emailVerified: activated,
+  } = user;
 
-  return { uid, email, name };
+  return {
+    uid,
+    name,
+    email,
+    activated,
+  };
 };
