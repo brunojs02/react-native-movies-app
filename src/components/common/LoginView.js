@@ -1,7 +1,15 @@
 import React from 'react';
+import {
+  View,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import PropTypes from 'prop-types';
+import { Header } from 'react-navigation-stack';
 import { withNavigation } from 'react-navigation';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { Colors } from '~/theme';
 import Text from './Text';
 
@@ -20,18 +28,33 @@ const LoginView = ({ title, children }) => {
 
   return (
     <SafeAreaView style={container}>
-      <View style={titleContainer}>
-        <Text
-          bold
-          extraLarge
-          color={Colors.white}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        {...Platform.select({
+          ios: {
+            enabled: true,
+            behavior: 'padding',
+            keyboardVerticalOffset: Header.HEIGHT + 20,
+          },
+        })}
+      >
+        <View style={titleContainer}>
+          <Text
+            bold
+            extraLarge
+            color={Colors.white}
+          >
+            {title}
+          </Text>
+        </View>
+        <ScrollView
+          style={{ marginHorizontal: 8 }}
+          contentContainerStyle={content}
+          keyboardShouldPersistTaps="handled"
         >
-          {title}
-        </Text>
-      </View>
-      <View style={content}>
-        {children}
-      </View>
+          {children}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -48,8 +71,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   content: {
-    flex: 1,
-    marginHorizontal: 8,
+    flexGrow: 1,
+    justifyContent: 'center',
   },
 });
 
