@@ -12,8 +12,9 @@ const PopularPersonList = () => {
       <List
         data={data}
         title="Popular Persons"
-        subtitle="Most popular persons"
         onViewAllPress={() => {}}
+        subtitle="Most popular persons"
+        keyExtractor={({ id }) => String(id)}
         renderItem={({ item: { id, name, profile_path: profilePath } }) => (
           <Person
             id={id}

@@ -1,7 +1,6 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, View } from 'react-native';
-import { uniqBy } from 'lodash';
 import PropTypes from 'prop-types';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import { withTheme } from '~/theme';
 import Text from '../Text';
 import { styles } from './styles';
@@ -10,10 +9,11 @@ const propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({}),
   ),
-  title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  renderItem: PropTypes.func.isRequired,
   onViewAllPress: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  renderItem: PropTypes.func.isRequired,
+  keyExtractor: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -28,6 +28,7 @@ const List = ({
   theme,
   subtitle,
   renderItem,
+  keyExtractor,
   onViewAllPress,
 }) => {
   const { textContainer, containerContentStyle } = styles;
@@ -58,13 +59,13 @@ const List = ({
         )}
       </View>
       <FlatList
-        data={uniqBy(data, 'id')}
+        data={data}
         horizontal
         renderItem={renderItem}
         style={{ marginTop: 10 }}
-        contentContainerStyle={containerContentStyle}
-        keyExtractor={({ id }) => String(id)}
+        keyExtractor={keyExtractor}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={containerContentStyle}
         ItemSeparatorComponent={() => <View style={{ marginEnd: 20 }} />}
       />
     </View>

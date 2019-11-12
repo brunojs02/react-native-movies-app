@@ -13,8 +13,9 @@ const PopularTVList = () => {
       <List
         data={data}
         title="Popular TV Show"
-        subtitle="Most popular tv show in the world"
         onViewAllPress={() => {}}
+        keyExtractor={({ id }) => String(id)}
+        subtitle="Most popular tv show in the world"
         renderItem={({ item }) => <PopularTVItem tvshow={item} />}
       />
     )

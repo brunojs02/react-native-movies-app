@@ -106,8 +106,9 @@ const Movie = ({ navigation: { getParam } }) => {
           </View>
           <View style={{ marginTop: 20 }}>
             <List
-              data={crew.filter(({ job }) => job === 'Director')}
               title="Directors"
+              keyExtractor={({ credit_id: id }) => String(id)}
+              data={crew.filter(({ job }) => job === 'Director')}
               renderItem={({ item: { id, name, profile_path: profilePath } }) => (
                 <Person
                   id={id}
@@ -121,6 +122,7 @@ const Movie = ({ navigation: { getParam } }) => {
             <List
               data={cast}
               title="Actors"
+              keyExtractor={({ cast_id: id }) => String(id)}
               renderItem={({ item }) => {
                 const {
                   id,

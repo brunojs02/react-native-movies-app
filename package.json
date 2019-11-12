@@ -14,7 +14,6 @@
     "@react-native-firebase/auth": "^6.0.3",
     "@react-native-firebase/remote-config": "^6.0.3",
     "axios": "^0.19.0",
-    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "0.61.2",

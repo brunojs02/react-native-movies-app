@@ -13,8 +13,9 @@ const PopularMovieList = () => {
       <List
         data={data}
         title="Popular Movies"
-        subtitle="Most popular movies in the world"
         onViewAllPress={() => {}}
+        keyExtractor={({ id }) => String(id)}
+        subtitle="Most popular movies in the world"
         renderItem={({ item }) => <PopularMovieItem movie={item} />}
       />
     )
