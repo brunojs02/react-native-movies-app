@@ -12,6 +12,9 @@
 #### Home Screen
 <img src="screenshots/home_screen.webp" height="600" />
 
+#### Profile Screen
+<img src="screenshots/profile_screen.webp" height="600" />
+
 ## Before Run
 - Create an api key in [themoviedb](http://themoviedb.org)
 - Create a firebase project with package/bundleId called com.rnmovies
@@ -25,12 +28,24 @@
 ```bash
 git clone https://github.com/brunojs02/react-native-movies-app.git rnmovies
 cd rnmovies && (npm i || yarn)
+```
+### iOS
+```bash
+cd ios
+pod install
+cd ..
+```
+- Download GoogleService-Info.plist, put on ios/rnmovies and reference on xcode
+
+### Android
+```bash
 cd android/app
 keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
 cd ../..
 ```
-- Download google-services.json and put under android/app (for Android)
-- Download GoogleService-Info.plist, put on ios/rnmovies and reference on xcode (for iOS)
+- Download google-services.json and put under android/app
+
+### Running
 ```bash
-cd react-native (run-android || run-ios)
+yarn (android || ios)
 ```
