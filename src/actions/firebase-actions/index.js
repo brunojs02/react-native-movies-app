@@ -18,8 +18,8 @@ export const initFirebase = onFinish => async (dispatch) => {
 
 const setRemoteConfigValues = async (dispatch) => {
   await remoteConfig().fetchAndActivate();
-  const values = await remoteConfig().getAll();
-  const config = Object.keys(values).map(key => ({ key, value: values[key].value }));
+  const firebaseConfigs = await remoteConfig().getAll();
+  const configs = Object.entries(firebaseConfigs).map(([key, { _value: value }]) => ({ key, value }));
 
-  dispatch({ type: FIREBASE_SET_CONFIG, payload: config });
+  dispatch({ type: FIREBASE_SET_CONFIG, payload: configs });
 };
