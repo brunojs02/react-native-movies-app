@@ -8,8 +8,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Header } from 'react-navigation-stack';
-import { withNavigation } from 'react-navigation';
+import { Header } from '@react-navigation/stack';
 import { Colors } from '~/theme';
 import Text from './Text';
 
@@ -17,9 +16,7 @@ const propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
-    PropTypes.arrayOf(
-      PropTypes.node,
-    ),
+    PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
 };
 
@@ -39,11 +36,7 @@ const LoginView = ({ title, children }) => {
         })}
       >
         <View style={titleContainer}>
-          <Text
-            bold
-            extraLarge
-            color={Colors.white}
-          >
+          <Text bold extraLarge color={Colors.white}>
             {title}
           </Text>
         </View>
@@ -78,4 +71,4 @@ const styles = StyleSheet.create({
 
 LoginView.propTypes = propTypes;
 
-export default withNavigation(LoginView);
+export default LoginView;

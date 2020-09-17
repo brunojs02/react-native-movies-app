@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { useNavigation } from '@react-navigation/native';
 import { withTheme } from '~/theme';
 import { useRemoteConfig } from '~/hooks';
 import { THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
@@ -26,38 +21,23 @@ const defaultProps = {
   profilePath: null,
 };
 
-const Person = ({
-  id,
-  name,
-  theme,
-  character,
-  profilePath,
-  navigation: { navigate },
-}) => {
+const Person = ({ id, name, theme, character, profilePath }) => {
+  const { navigate } = useNavigation();
   const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
-  const source = profilePath ? { uri: `${resourceUrl}w185${profilePath}` } : defaultProfilePic;
+  const source = profilePath
+    ? { uri: `${resourceUrl}w185${profilePath}` }
+    : defaultProfilePic;
 
   return (
     <TouchableOpacity onPress={() => navigate('person', { id })}>
       <View style={{ width: 80 }}>
-        <Image
-          style={styles.imageStyle}
-          source={source}
-          resizeMode="cover"
-        />
+        <Image style={styles.imageStyle} source={source} resizeMode="cover" />
         <View style={{ alignItems: 'center' }}>
-          <Text
-            small
-            color={theme.secondaryColor}
-            numberOfLines={1}
-          >
+          <Text small color={theme.secondaryColor} numberOfLines={1}>
             {name}
           </Text>
           {!!character && (
-            <Text
-              small
-              numberOfLines={1}
-            >
+            <Text small numberOfLines={1}>
               {character}
             </Text>
           )}
@@ -79,4 +59,4 @@ const styles = StyleSheet.create({
 Person.propTypes = propTypes;
 Person.defaultProps = defaultProps;
 
-export default withNavigation(withTheme(Person));
+export default withTheme(Person);

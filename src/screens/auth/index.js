@@ -2,12 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Keyboard, StyleSheet } from 'react-native';
 import { Colors } from '~/theme';
-import {
-  Text,
-  Button,
-  LoginView,
-  TextInput,
-} from '~/components';
+import { Text, Button, LoginView, TextInput } from '~/components';
 import {
   login,
   changeEmail,
@@ -18,12 +13,9 @@ import {
 const Auth = ({ navigation }) => {
   const dispatch = useDispatch();
   const { navigate } = navigation;
-  const {
-    email,
-    loading,
-    password,
-    errorMessage,
-  } = useSelector(({ authReducer }) => authReducer);
+  const { email, loading, password, errorMessage } = useSelector(
+    ({ authReducer }) => authReducer,
+  );
 
   useEffect(() => () => dispatch(resetFields()), []);
 
@@ -38,14 +30,14 @@ const Auth = ({ navigation }) => {
         <TextInput
           label="Email"
           value={email}
-          onChangeText={text => dispatch(changeEmail(text))}
+          onChangeText={(text) => dispatch(changeEmail(text))}
           autoCapitalize="none"
           keyboardType="email-address"
         />
         <TextInput
           label="Password"
           value={password}
-          onChangeText={text => dispatch(changePassword(text))}
+          onChangeText={(text) => dispatch(changePassword(text))}
           autoCorrect={false}
           autoCapitalize="none"
           secureTextEntry

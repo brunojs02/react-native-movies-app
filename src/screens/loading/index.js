@@ -5,18 +5,12 @@ import { Colors } from '~/theme';
 import { Logo, Loading } from '~/components';
 import { initFirebase } from '~/actions/firebase-actions';
 
-const LoadingScreen = ({ navigation: { navigate } }) => {
+const LoadingScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initFirebase((isLogged) => {
-      if (isLogged) {
-        navigate('main');
-      } else {
-        navigate('auth');
-      }
-    }));
-  });
+    dispatch(initFirebase());
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>

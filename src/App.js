@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import Nav from './navigation';
+import Navigation from './navigation';
 import { StatusBar } from './components';
 
 const App = () => (
   <Provider store={store}>
     <StatusBar />
-    <Nav />
+    <Navigation />
   </Provider>
 );
 
