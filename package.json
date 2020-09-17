@@ -10,13 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-firebase/app": "^6.0.3",
-    "@react-native-firebase/auth": "^6.0.3",
-    "@react-native-firebase/remote-config": "^6.0.3",
+    "@react-native-firebase/app": "^8.3.1",
+    "@react-native-firebase/auth": "^8.3.1",
+    "@react-native-firebase/remote-config": "^8.1.4",
     "axios": "^0.19.0",
     "prop-types": "^15.7.2",
-    "react": "16.9.0",
-    "react-native": "0.61.2",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
     "react-native-gesture-handler": "^1.5.0",
     "react-native-reanimated": "^1.4.0",
     "react-native-vector-icons": "^6.6.0",
@@ -28,10 +28,10 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
     "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.8.0",
+    "babel-jest": "^25.1.0",
     "babel-plugin-root-import": "^6.4.1",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^17.1.1",
@@ -39,9 +39,9 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.55.0",
-    "react-test-renderer": "16.8.6"
+    "jest": "^25.1.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native",
