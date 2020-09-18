@@ -50,7 +50,7 @@ const Auth = ({ navigation }) => {
           loading={loading}
           onPress={() => {
             Keyboard.dismiss();
-            dispatch(login(navigation));
+            dispatch(login());
           }}
         />
         <View style={{ alignSelf: 'center' }}>

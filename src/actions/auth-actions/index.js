@@ -12,66 +12,71 @@ import {
 
 export const resetFields = () => ({ type: AUTH_RESET_FIELDS });
 
-export const setUser = user => ({ type: AUTH_SET_USER, payload: getUserMinified(user) });
+export const setUser = (user) => ({
+  type: AUTH_SET_USER,
+  payload: getUserMinified(user),
+});
 
-export const changeEmail = email => ({ type: AUTH_USER_CHANGE_EMAIL, payload: email });
+export const changeEmail = (email) => ({
+  type: AUTH_USER_CHANGE_EMAIL,
+  payload: email,
+});
 
-export const changePassword = password => ({ type: AUTH_USER_CHANGE_PASSWORD, payload: password });
+export const changePassword = (password) => ({
+  type: AUTH_USER_CHANGE_PASSWORD,
+  payload: password,
+});
 
-export const login = ({ navigate }) => (dispatch, getState) => {
+export const login = () => (dispatch, getState) => {
   const { authReducer } = getState();
   const { email, password } = authReducer;
 
   dispatch({ type: AUTH_USER_LOGIN });
-  auth().signInWithEmailAndPassword(email, password).then(({ user }) => {
-    const userMinified = getUserMinified(user);
+  auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(({ user }) => {
+      const userMinified = getUserMinified(user);
 
-    if (!userMinified.activated) {
-      const error = { code: 'auth/account-not-activated' };
+      if (!userMinified.activated) {
+        const error = { code: 'auth/account-not-activated' };
 
-      throw error;
-    }
+        throw error;
+      }
 
-    dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: userMinified });
-    navigate('home');
-  }).catch(({ code }) => {
-    let errorMessage = '';
+      dispatch({ type: AUTH_USER_LOGIN_SUCCESS, payload: userMinified });
+    })
+    .catch(({ code }) => {
+      let errorMessage = '';
 
-    switch (code) {
-      case 'auth/user-not-found':
-        errorMessage = 'User not found.';
-        break;
-      case 'auth/wrong-password':
-        errorMessage = 'Email and/or password are wrong.';
-        break;
-      case 'auth/invalid-email':
-        errorMessage = 'Invalid Email.';
-        break;
-      case 'auth/account-not-activated':
-        errorMessage = 'Verify your email to activate your account.';
-        break;
-      default:
-        errorMessage = 'An error occurred, try again.';
-    }
+      switch (code) {
+        case 'auth/user-not-found':
+          errorMessage = 'User not found.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Email and/or password are wrong.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid Email.';
+          break;
+        case 'auth/account-not-activated':
+          errorMessage = 'Verify your email to activate your account.';
+          break;
+        default:
+          errorMessage = 'An error occurred, try again.';
+      }
 
-    dispatch({ type: AUTH_USER_LOGIN_FAILURE, payload: errorMessage });
-  });
+      dispatch({ type: AUTH_USER_LOGIN_FAILURE, payload: errorMessage });
+    });
 };
 
-export const logout = ({ navigate }) => (dispatch) => {
-  auth().signOut().then(() => {
-    dispatch({ type: AUTH_USER_LOGOUT });
-    navigate('auth');
-  });
+export const logout = () => (dispatch) => {
+  auth()
+    .signOut()
+    .then(() => dispatch({ type: AUTH_USER_LOGOUT }));
 };
 
 const getUserMinified = (user) => {
-  const {
-    uid,
-    email,
-    displayName: name,
-    emailVerified: activated,
-  } = user;
+  const { uid, email, displayName: name, emailVerified: activated } = user;
 
   return {
     uid,

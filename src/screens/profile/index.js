@@ -6,7 +6,7 @@ import { Text, Container } from '~/components';
 import { logout } from '~/actions/auth-actions';
 import { MenuConfigItem } from './components';
 
-const Settings = ({ navigation }) => {
+const Settings = () => {
   const dispatch = useDispatch();
 
   return (
@@ -14,16 +14,17 @@ const Settings = ({ navigation }) => {
       <View style={styles.imageProfileContainer}>
         <Image
           style={{ marginBottom: 6 }}
-          source={{ uri: 'https://image.flaticon.com/icons/png/512/149/149071.png', width: 80, height: 80 }}
+          source={{
+            uri: 'https://image.flaticon.com/icons/png/512/149/149071.png',
+            width: 80,
+            height: 80,
+          }}
         />
         <Text numberOfLines={2}>Bruno Santos</Text>
       </View>
       <View style={{ marginBottom: 20 }}>
         <View style={styles.separator} />
-        <MenuConfigItem
-          icon="edit"
-          description="Edit Profile"
-        />
+        <MenuConfigItem icon="edit" description="Edit Profile" />
         <MenuConfigItem
           icon="git-branch"
           description="Version"
@@ -33,7 +34,7 @@ const Settings = ({ navigation }) => {
           last
           icon="log-out"
           description="Logout"
-          onPress={() => dispatch(logout(navigation))}
+          onPress={() => dispatch(logout())}
         />
       </View>
     </Container>

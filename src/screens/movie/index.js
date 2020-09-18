@@ -17,13 +17,18 @@ import {
 } from '~/components';
 import { Colors } from '~/theme';
 import { useFetch, useRemoteConfig } from '~/hooks';
-import { YOUTUBE_URL, THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
+import {
+  YOUTUBE_URL,
+  THEMOVIEDB_RESOURCE_URL,
+} from '~/constants/firebase-constants';
 
-const Movie = ({ navigation: { getParam } }) => {
-  const movieId = getParam('id', null);
+const Movie = ({ route: { params } }) => {
+  const { id: movieId = 0 } = params;
   const youtubeUrl = useRemoteConfig({ key: YOUTUBE_URL });
   const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
-  const { response, loading } = useFetch({ path: `/movie/${movieId}?append_to_response=videos,credits` });
+  const { response, loading } = useFetch({
+    path: `/movie/${movieId}?append_to_response=videos,credits`,
+  });
   const {
     infoContainer,
     headerContainer,
@@ -43,108 +48,83 @@ const Movie = ({ navigation: { getParam } }) => {
     vote_average: rating,
   } = response || {};
   const { cast, crew } = credits || {};
-  const duration = `${Math.floor(runtime / 60)}h ${(runtime % 60)}min`;
+  const duration = `${Math.floor(runtime / 60)}h ${runtime % 60}min`;
 
-  return (loading
-    ? (
-      <View style={loadingContainer}>
-        <Loading />
-      </View>
-    )
-    : (
-      <ImageBackground
-        source={{ uri: `${resourceUrl}original${pic}` }}
-        style={backgroundContainer}
-      >
-        <Container transparency>
-          <HeaderBack />
-          <View style={headerContainer}>
-            <View style={{ flex: 1 }}>
-              <Text
-                bold
-                large
-                color={Colors.white}
-              >
-                {title}
-              </Text>
-              <Text>{date.split('-')[0]}</Text>
-            </View>
-            {!!videos.length && (
-              <TouchableOpacity
-                onPress={() => Linking.openURL(`${youtubeUrl}${videos[0].key}`)}
-              >
-                <Icon
-                  large
-                  name="play-circle"
-                  color={Colors.green}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={infoContainer}>
-            <View style={{ flex: 1 }}>
-              <Text color={Colors.white}>
-                {genres.map(({ name }) => name).join(', ')}
-              </Text>
-              <Text color={Colors.white}>{duration.toString()}</Text>
-            </View>
-            <View style={ratingContainer}>
-              <View style={{ marginRight: 5 }}>
-                <Icon
-                  name="star"
-                  color={Colors.green}
-                />
-              </View>
-              <Text color={Colors.white}>{rating.toString()}</Text>
-            </View>
-          </View>
-          <View style={{ marginHorizontal: 16 }}>
-            <Text color={Colors.white}>Sinopsi</Text>
-            <Text>
-              {overview}
+  return loading ? (
+    <View style={loadingContainer}>
+      <Loading />
+    </View>
+  ) : (
+    <ImageBackground
+      source={{ uri: `${resourceUrl}original${pic}` }}
+      style={backgroundContainer}
+    >
+      <Container transparency>
+        <HeaderBack />
+        <View style={headerContainer}>
+          <View style={{ flex: 1 }}>
+            <Text bold large color={Colors.white}>
+              {title}
             </Text>
+            <Text>{date.split('-')[0]}</Text>
           </View>
-          <View style={{ marginTop: 20 }}>
-            <List
-              title="Directors"
-              keyExtractor={({ credit_id: id }) => String(id)}
-              data={crew.filter(({ job }) => job === 'Director')}
-              renderItem={({ item: { id, name, profile_path: profilePath } }) => (
+          {!!videos.length && (
+            <TouchableOpacity
+              onPress={() => Linking.openURL(`${youtubeUrl}${videos[0].key}`)}
+            >
+              <Icon large name="play-circle" color={Colors.green} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={infoContainer}>
+          <View style={{ flex: 1 }}>
+            <Text color={Colors.white}>
+              {genres.map(({ name }) => name).join(', ')}
+            </Text>
+            <Text color={Colors.white}>{duration.toString()}</Text>
+          </View>
+          <View style={ratingContainer}>
+            <View style={{ marginRight: 5 }}>
+              <Icon name="star" color={Colors.green} />
+            </View>
+            <Text color={Colors.white}>{rating.toString()}</Text>
+          </View>
+        </View>
+        <View style={{ marginHorizontal: 16 }}>
+          <Text color={Colors.white}>Sinopsi</Text>
+          <Text>{overview}</Text>
+        </View>
+        <View style={{ marginTop: 20 }}>
+          <List
+            title="Directors"
+            keyExtractor={({ credit_id: id }) => String(id)}
+            data={crew.filter(({ job }) => job === 'Director')}
+            renderItem={({ item: { id, name, profile_path: profilePath } }) => (
+              <Person id={id} name={name} profilePath={profilePath} />
+            )}
+          />
+        </View>
+        <View>
+          <List
+            data={cast}
+            title="Actors"
+            keyExtractor={({ cast_id: id }) => String(id)}
+            renderItem={({ item }) => {
+              const { id, name, character, profile_path: profilePath } = item;
+
+              return (
                 <Person
                   id={id}
                   name={name}
+                  character={character}
                   profilePath={profilePath}
                 />
-              )}
-            />
-          </View>
-          <View>
-            <List
-              data={cast}
-              title="Actors"
-              keyExtractor={({ cast_id: id }) => String(id)}
-              renderItem={({ item }) => {
-                const {
-                  id,
-                  name,
-                  character,
-                  profile_path: profilePath,
-                } = item;
-
-                return (
-                  <Person
-                    id={id}
-                    name={name}
-                    character={character}
-                    profilePath={profilePath}
-                  />
-                );
-              }}
-            />
-          </View>
-        </Container>
-      </ImageBackground>
-    )
+              );
+            }}
+          />
+        </View>
+      </Container>
+    </ImageBackground>
   );
 };
 

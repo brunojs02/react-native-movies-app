@@ -1,72 +1,59 @@
-// import React from 'react';
-// import { StyleSheet } from 'react-native';
-// import { createBottomTabNavigator } from 'react-navigation-tabs';
-// import { Colors } from '~/theme';
-// import { Icon, Container } from '~/components';
-// import Home from './Home';
-// import Profile from './Profile';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Colors } from '~/theme';
+import { Icon, Container } from '~/components';
+import HomeStack from './HomeStack';
+import ProfileStack from './ProfileStack';
 
-// const screensWithTabBarHided = [];
-// const Main = createBottomTabNavigator({
-//   Home,
-//   A: Container,
-//   B: Container,
-//   C: Container,
-//   Profile,
-// },
-// {
-//   initialRouteName: 'Home',
-//   defaultNavigationOptions: ({ navigation: { state } }) => {
-//     const { routeName, routes = [] } = state;
+const Tab = createBottomTabNavigator();
 
-//     return {
-//       tabBarIcon: ({ tintColor }) => {
-//         let iconName;
+// eslint-disable-next-line arrow-parens
+const getTabIcon = (name) => ({ color }) => <Icon name={name} color={color} />;
 
-//         switch (routeName) {
-//           case 'Home':
-//             iconName = 'home';
-//             break;
-//           case 'A':
-//             iconName = 'search';
-//             break;
-//           case 'B':
-//             iconName = 'grid';
-//             break;
-//           case 'C':
-//             iconName = 'message-square';
-//             break;
-//           case 'Profile':
-//             iconName = 'user';
-//             break;
-//           default:
-//         }
+const MainTab = () => (
+  <Tab.Navigator
+    initialRouteName="homeStack"
+    tabBarOptions={{
+      showLabel: false,
+      tabStyle: {
+        borderTopColor: Colors.green,
+        backgroundColor: Colors.black,
+        borderTopWidth: StyleSheet.hairlineWidth,
+      },
+      keyboardHidesTabBar: true,
+      activeTintColor: Colors.green,
+      inactiveTintColor: Colors.lightGrey,
+      style: { backgroundColor: Colors.black },
+    }}
+  >
+    <Tab.Screen
+      name="homeStack"
+      component={HomeStack}
+      options={{ tabBarIcon: getTabIcon('home') }}
+    />
+    <Tab.Screen
+      name="a"
+      component={Container}
+      options={{ tabBarIcon: getTabIcon('search') }}
+    />
+    <Tab.Screen
+      name="b"
+      component={Container}
+      options={{ tabBarIcon: getTabIcon('grid') }}
+    />
+    <Tab.Screen
+      name="c"
+      component={Container}
+      options={{ tabBarIcon: getTabIcon('message-square') }}
+    />
+    <Tab.Screen
+      name="profileStack"
+      component={ProfileStack}
+      options={{ tabBarIcon: getTabIcon('user') }}
+    />
+  </Tab.Navigator>
+);
 
-//         return (
-//           <Icon
-//             name={iconName}
-//             color={tintColor}
-//           />
-//         );
-//       },
-//       tabBarVisible: !routes.find(({ routeName }) => screensWithTabBarHided
-//         .find(screen => screen === routeName)),
-//     };
-//   },
-//   tabBarOptions: {
-//     activeTintColor: Colors.green,
-//     inactiveTintColor: Colors.lightGrey,
-//     showLabel: false,
-//     tabStyle: {
-//       backgroundColor: Colors.black,
-//       borderTopColor: Colors.green,
-//       borderTopWidth: StyleSheet.hairlineWidth,
-//     },
-//     style: {
-//       backgroundColor: Colors.black,
-//     },
-//     keyboardHidesTabBar: true,
-//   },
-// });
-
-export default () => null;
+export default MainTab;
