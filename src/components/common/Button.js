@@ -52,11 +52,7 @@ const Button = ({
     );
   } else {
     buttonContent = (
-      <Text
-        bold
-        color={tintColor}
-        style={{ textAlign: 'center' }}
-      >
+      <Text bold color={tintColor} style={{ textAlign: 'center' }}>
         {text}
       </Text>
     );
@@ -67,9 +63,7 @@ const Button = ({
 
     return (
       <TouchableWithoutFeedback>
-        <View style={buttonContainerStyle}>
-          {buttonContent}
-        </View>
+        <View style={buttonContainerStyle}>{buttonContent}</View>
       </TouchableWithoutFeedback>
     );
   }
@@ -79,13 +73,8 @@ const Button = ({
   }
 
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={buttonContainerStyle}
-    >
-      <View>
-        {buttonContent}
-      </View>
+    <TouchableOpacity onPress={onPress} style={buttonContainerStyle}>
+      <View>{buttonContent}</View>
     </TouchableOpacity>
   );
 };

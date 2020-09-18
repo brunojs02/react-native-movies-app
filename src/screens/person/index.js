@@ -5,29 +5,26 @@ import { Container, Loading, HeaderBack } from '~/components';
 import { useFetch, useRemoteConfig } from '~/hooks';
 import { THEMOVIEDB_RESOURCE_URL } from '~/constants/firebase-constants';
 
-const Person = ({ navigation: { getParam } }) => {
+const Person = ({ route: { params } }) => {
+  const { id: personId = 0 } = params;
   const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
-  const personId = getParam('id', null);
   const { response, loading } = useFetch({ path: `/person/${personId}` });
   const { profile_path: pic } = response || {};
 
-  return (loading
-    ? (
-      <View style={styles.loadingContainer}>
-        <Loading />
-      </View>
-    )
-    : (
-      <ImageBackground
-        source={{ uri: `${resourceUrl}original${pic}` }}
-        style={styles.backgroundContainer}
-      >
-        <Container transparency>
-          <HeaderBack />
-          <View />
-        </Container>
-      </ImageBackground>
-    )
+  return loading ? (
+    <View style={styles.loadingContainer}>
+      <Loading />
+    </View>
+  ) : (
+    <ImageBackground
+      source={{ uri: `${resourceUrl}original${pic}` }}
+      style={styles.backgroundContainer}
+    >
+      <Container transparency>
+        <HeaderBack />
+        <View />
+      </Container>
+    </ImageBackground>
   );
 };
 

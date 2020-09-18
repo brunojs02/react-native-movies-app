@@ -1,5 +1,5 @@
 import React from 'react';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 import { Image, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Text } from '~/components';
@@ -15,13 +15,9 @@ const propTypes = {
   }).isRequired,
 };
 
-function PopularMovieItem({ movie, navigation: { navigate } }) {
-  const {
-    id,
-    title,
-    poster_path: pic,
-    release_date: date,
-  } = movie;
+function PopularMovieItem({ movie }) {
+  const { navigate } = useNavigation();
+  const { id, title, poster_path: pic, release_date: date } = movie;
   const resourceUrl = useRemoteConfig({ key: THEMOVIEDB_RESOURCE_URL });
 
   return (
@@ -32,12 +28,10 @@ function PopularMovieItem({ movie, navigation: { navigate } }) {
           source={{ uri: `${resourceUrl}w342${pic}` }}
           resizeMode="stretch"
         />
-        <View style={{ paddingHorizontal: 5, alignItems: 'center', marginTop: 8 }}>
-          <Text
-            small
-            bold
-            numberOfLines={1}
-          >
+        <View
+          style={{ paddingHorizontal: 5, alignItems: 'center', marginTop: 8 }}
+        >
+          <Text small bold numberOfLines={1}>
             {title}
           </Text>
           <Text small>{date.split('-')[0]}</Text>
@@ -49,4 +43,4 @@ function PopularMovieItem({ movie, navigation: { navigate } }) {
 
 PopularMovieItem.propTypes = propTypes;
 
-export default withNavigation(PopularMovieItem);
+export default PopularMovieItem;

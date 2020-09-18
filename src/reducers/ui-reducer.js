@@ -1,7 +1,6 @@
-import theme from '~theme/theme.json';
-import {
-  UI_CHANGE_THEME,
-} from '~/actions/ui-actions/types';
+import { UI_CHANGE_THEME } from '~/actions/ui-actions/types';
+
+const theme = require('../theme/theme.json');
 
 const INITIAL_STATE = {
   theme: theme.dark,

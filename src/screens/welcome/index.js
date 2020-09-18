@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-} from 'react-native';
-import {
-  Logo,
-  Text,
-  Button,
-  StatusBar,
-} from '~/components';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { Logo, Text, Button, StatusBar } from '~/components';
 import { Colors } from '~/theme';
 
 const Welcome = ({ navigation }) => {
@@ -22,7 +13,7 @@ const Welcome = ({ navigation }) => {
   const { navigate } = navigation;
 
   return (
-    <>
+    <React.Fragment>
       <StatusBar />
       <SafeAreaView style={container}>
         <View style={{ flex: 1 }}>
@@ -34,21 +25,14 @@ const Welcome = ({ navigation }) => {
           <View style={welcomeContainer}>
             <View style={{ alignItems: 'center' }}>
               <Text>Welcome to rnmovies</Text>
-              <Text
-                extraLarge
-                color={Colors.white}
-                style={{ marginTop: 20 }}
-              >
+              <Text extraLarge color={Colors.white} style={{ marginTop: 20 }}>
                 Get Started.
               </Text>
             </View>
           </View>
           <View style={actionsContainer}>
             <View>
-              <Button
-                text="Sign In"
-                onPress={() => navigate('auth')}
-              />
+              <Button text="Sign In" onPress={() => navigate('auth')} />
             </View>
             <View style={{ alignSelf: 'center' }}>
               <Button
@@ -61,7 +45,7 @@ const Welcome = ({ navigation }) => {
           </View>
         </View>
       </SafeAreaView>
-    </>
+    </React.Fragment>
   );
 };
 

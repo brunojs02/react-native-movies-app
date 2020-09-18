@@ -1,14 +1,21 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import Auth from './Auth';
-import Main from './Main';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import MainTab from './MainTab';
+import AuthStack from './AuthStack';
 import { Loading } from '~/screens';
 
-const nav = createSwitchNavigator({
-  auth: Auth,
-  main: Main,
-  loading: Loading,
-}, {
-  initialRouteName: 'loading',
-});
+const Navigation = () => {
+  const { user } = useSelector(({ authReducer }) => authReducer);
+  const { initializing } = useSelector(({ appReducer }) => appReducer);
 
-export default createAppContainer(nav);
+  if (initializing) return <Loading />;
+
+  return (
+    <NavigationContainer>
+      {user ? <MainTab /> : <AuthStack />}
+    </NavigationContainer>
+  );
+};
+
+export default Navigation;

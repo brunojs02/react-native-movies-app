@@ -1,18 +1,19 @@
 import React from 'react';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from '../Icon';
 
-const HeaderBack = ({ navigation: { pop } }) => (
-  <View style={styles.container}>
-    <TouchableOpacity onPress={() => setTimeout(pop, 0)}>
-      <Icon
-        large
-        name="arrow-left"
-      />
-    </TouchableOpacity>
-  </View>
-);
+const HeaderBack = () => {
+  const { goBack } = useNavigation();
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => setTimeout(goBack, 0)}>
+        <Icon large name="arrow-left" />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -21,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(HeaderBack);
+export default HeaderBack;
