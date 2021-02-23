@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  View,
   Platform,
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Colors } from '~/theme';
@@ -40,41 +38,30 @@ const Button = ({
 }) => {
   const { container } = styles;
   const buttonContainerStyle = [container];
-  let buttonContent;
-
-  if (loading) {
-    buttonContent = (
-      <ActivityIndicator
-        color={Colors.white}
-        style={{ marginVertical: Platform.OS === 'ios' ? 10 : 0 }}
-        size={Platform.OS === 'ios' ? 1 : 24}
-      />
-    );
-  } else {
-    buttonContent = (
-      <Text bold color={tintColor} style={{ textAlign: 'center' }}>
-        {text}
-      </Text>
-    );
-  }
 
   if (disabled || loading) {
     buttonContainerStyle.push({ backgroundColor: Colors.lightGrey });
-
-    return (
-      <TouchableWithoutFeedback>
-        <View style={buttonContainerStyle}>{buttonContent}</View>
-      </TouchableWithoutFeedback>
-    );
-  }
-
-  if (!transparent) {
+  } else if (!transparent) {
     buttonContainerStyle.push({ backgroundColor: color });
   }
 
   return (
-    <TouchableOpacity onPress={onPress} style={buttonContainerStyle}>
-      <View>{buttonContent}</View>
+    <TouchableOpacity
+      onPress={onPress}
+      style={buttonContainerStyle}
+      disabled={disabled || loading}
+    >
+      {loading ? (
+        <ActivityIndicator
+          color={Colors.white}
+          size={Platform.OS === 'ios' ? 'large' : 24}
+          style={{ marginVertical: Platform.OS === 'ios' ? 10 : 0 }}
+        />
+      ) : (
+        <Text bold color={tintColor} style={{ textAlign: 'center' }}>
+          {text}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

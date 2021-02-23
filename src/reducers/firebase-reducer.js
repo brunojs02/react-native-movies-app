@@ -1,7 +1,7 @@
 import { FIREBASE_SET_CONFIG } from '~/actions/firebase-actions/types';
 
 const INITIAL_STATE = {
-  remoteConfig: {},
+  configs: {},
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
     case FIREBASE_SET_CONFIG:
       return {
         ...state,
-        remoteConfig: payload,
+        configs: payload,
       };
     default:
       return state;

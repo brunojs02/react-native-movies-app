@@ -1,4 +1,5 @@
-export default ({ getState }) => next => (action) => {
+/* eslint-disable no-console */
+export default ({ getState }) => (next) => (action) => {
   console.group();
   console.log('before', getState());
   console.log('action', action);

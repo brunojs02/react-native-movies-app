@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
 const useRemoteConfig = ({ key }) => {
-  const remoteConfig = useSelector(({ firebaseReducer }) => firebaseReducer.remoteConfig);
-  const config = remoteConfig.find(cfg => cfg.key === key);
+  const { configs } = useSelector(({ firebaseReducer }) => firebaseReducer);
+  const { _value: value = null } = configs[key] || {};
 
-  return config ? config.value : null;
+  return value;
 };
 
 export default useRemoteConfig;
