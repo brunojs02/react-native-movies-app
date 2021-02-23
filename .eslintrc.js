@@ -16,9 +16,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'detox'],
   rules: {
-    'arrow-parens': ['always'],
+    'arrow-parens': 0,
     'react/jsx-filename-extension': 'off',
     'import/no-named-default': 'off',
     'import/prefer-default-export': 'off',
